@@ -1,0 +1,25 @@
+{
+  "name": "cf7-kraken",
+  "version": "1.0.0",
+  "description": "Integration Pack For Contact Form 7",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-load-plugins": "^1.6.0",
+    "gulp-sass": "^4.0.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danishiqbal4/cf7-kraken.git"
+  },
+  "author": "Aqib",
+  "license": "GPL v3",
+  "bugs": {
+    "url": "https://github.com/danishiqbal4/cf7-kraken/issues"
+  },
+  "homepage": "https://github.com/danishiqbal4/cf7-kraken#readme"
+}

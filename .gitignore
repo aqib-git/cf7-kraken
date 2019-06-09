@@ -1,0 +1,5 @@
+vendor/
+wpcs/
+node_modules/
+admin/assets/css
+admin/assets/js
