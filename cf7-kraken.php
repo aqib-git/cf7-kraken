@@ -372,17 +372,18 @@ if ( ! class_exists( 'CF7_Kraken' ) ) {
          * @access public
          */
         public function register_modules() {
-            $modules = [
-                'slack',
-            ];
+            $modules = glob( trailingslashit( $this->plugin_path ) . 'includes/modules/*', GLOB_ONLYDIR );
 
-            foreach ( $modules as $module_name ) {
-                // Prepare class name.
+            foreach ( $modules as $module ) {
+				$module_name = pathinfo( $module, PATHINFO_BASENAME );
+
                 $class_name = str_replace( '-', ' ', $module_name );
                 $class_name = str_replace( ' ', '_', ucwords( $class_name ) );
                 $class_name = 'CF7_Kraken_' . $class_name . '_Module';
 
-                require_once $this->plugin_path . 'includes/modules/' . $module_name . '/module.php';
+				require_once $this->plugin_path . 'includes/modules/' . $module_name . '/module.php';
+
+				$this->modules[] = new $class_name();
             }
         }
 

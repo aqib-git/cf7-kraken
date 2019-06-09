@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) || die();
  * @since 1.0.0
  */
 class CF7_Kraken_Slack_Module {
-    
+
     public function get_name() {
 		return 'slack';
 	}
@@ -22,7 +22,7 @@ class CF7_Kraken_Slack_Module {
 	public function get_title() {
 		return __( 'Slack', 'cf7_kraken' );
     }
-    
+
     public function __construct() {
         $this->add_hooks();
     }
@@ -57,4 +57,3 @@ class CF7_Kraken_Slack_Module {
     }
 }
 
-new CF7_Kraken_Slack_Module();

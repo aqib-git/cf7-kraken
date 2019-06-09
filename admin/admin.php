@@ -167,9 +167,29 @@ if ( ! class_exists( 'CF7_kraken_Admin' ) ) {
          * @access public
          */
         public function register_assets() {
+			wp_enqueue_style(
+				'cf7-select2-styles',
+				'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css',
+				[],
+				cf7_kraken()->plugin_version()
+			);
+			wp_enqueue_script(
+				'cf7-select2-script',
+				'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js',
+				[],
+				cf7_kraken()->plugin_version()
+			);
+
             wp_enqueue_style(
 				'cf7-admin-styles',
 				$this->admin_assets_url( 'css/main.css' ),
+				[],
+				cf7_kraken()->plugin_version()
+			);
+
+			wp_enqueue_script(
+				'cf7-admin-script',
+				$this->admin_assets_url( 'js/main.min.js' ),
 				[],
 				cf7_kraken()->plugin_version()
 			);
