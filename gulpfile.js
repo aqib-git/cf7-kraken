@@ -20,5 +20,4 @@ gulp.task('build', gulp.parallel('sass', 'scripts'));
 gulp.task('watch', function() {
   gulp.watch('admin/assets/src/sass/**/*.scss', gulp.series('sass'));
   gulp.watch('admin/assets/src/js/main.js', gulp.series('scripts'));
-  // Other watchers
-})
+});

@@ -1,0 +1,7 @@
+#cf7k_mailchimp_integration_metabox {
+	display: none;
+
+	&.enabled {
+		display: block;
+	}
+}

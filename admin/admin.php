@@ -76,6 +76,7 @@ if ( ! class_exists( 'CF7_kraken_Admin' ) ) {
             add_action( 'init', [ $this, 'register_integration_cpt' ] );
 			add_action( 'add_meta_boxes', [ $this, 'register_meta_boxes' ] );
 			add_action( 'admin_enqueue_scripts', [ $this, 'register_assets' ] );
+			add_action( 'save_post_cf7k_integrations', [ $this, 'save_cpt_meta_boxes' ] );
         }
 
         public function register_admin_welcome_page() {
@@ -138,27 +139,33 @@ if ( ! class_exists( 'CF7_kraken_Admin' ) ) {
          * @access public
          */
         public function register_meta_boxes() {
-            add_meta_box(
-                'cf7k_general_settings_metabox',
-                __( 'General Settings', 'cf7_kraken' ),
-                [ $this, 'general_settings_metabox_cb'],
-                'cf7k_integrations',
-                'normal',
-                'high'
-            );
-        }
+			include_once __DIR__ . '/metaboxes/general_settings.php';
+		}
 
-        /**
-         * General setting metabox callback.
+		/**
+         * Save meta box(es).
          *
          * @since 1.0.0
          * @access public
          */
-        public function general_settings_metabox_cb() {
-            ob_start();
-            include_once __DIR__ . '/metaboxes/general_settings.php';
-            ob_end_flush();
-		}
+        public function save_cpt_meta_boxes( $post_id ) {
+			// Bail if we're doing an auto save.
+			if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+				return;
+			}
+
+			// If our nonce isn't there, or we can't verify it, bail.
+			if ( ! isset( $_POST['cf7k_cpt_meta_box_nonce'] ) || ! wp_verify_nonce( $_POST['cf7k_cpt_meta_box_nonce'], 'cf7k_cpt_meta_box_nonce' ) ) {
+				return;
+			}
+
+			// If our current user can't edit this post, bail.
+			if ( ! current_user_can( 'edit_post', $post_id ) ) {
+				return;
+			}
+
+			update_post_meta( $post_id, 'cf7k_cpt_meta_box', $_POST['cf7k_cpt_meta_box'] );
+        }
 
 		/**
          * Register admin assets.
@@ -219,7 +226,6 @@ if ( ! class_exists( 'CF7_kraken_Admin' ) ) {
 			return self::$instance;
 		}
     }
-
 }
 
 if ( ! function_exists( 'cf7_kraken_admin' ) ) {
