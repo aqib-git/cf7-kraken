@@ -66,7 +66,7 @@ if ( ! class_exists( 'CF7_kraken_Admin' ) ) {
 		 * @return void
 		 */
 		public function __construct() {
-			$this->admin_assets_url = trailingslashit( cf7_kraken()->plugin_url() . '/admin/assets' );
+			$this->admin_assets_url = trailingslashit( cf7k_init()->plugin_url() . '/admin/assets' );
 
             $this->add_admin_hooks();
         }
@@ -87,7 +87,7 @@ if ( ! class_exists( 'CF7_kraken_Admin' ) ) {
                 'cf7_kraken',
                 function () {
                     ob_start();
-                    include_once cf7_kraken()->plugin_path() . 'admin/views/welcome.php';
+                    include_once cf7k_init()->plugin_path() . 'admin/views/welcome.php';
                     ob_end_flush();
                 },
                 'dashicons-rest-api',
@@ -149,22 +149,32 @@ if ( ! class_exists( 'CF7_kraken_Admin' ) ) {
          * @access public
          */
         public function save_cpt_meta_boxes( $post_id ) {
-			// Bail if we're doing an auto save.
 			if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 				return;
 			}
 
-			// If our nonce isn't there, or we can't verify it, bail.
-			if ( ! isset( $_POST['cf7k_cpt_meta_box_nonce'] ) || ! wp_verify_nonce( $_POST['cf7k_cpt_meta_box_nonce'], 'cf7k_cpt_meta_box_nonce' ) ) {
+			if (
+				! isset( $_POST['cf7k_cpt_meta_box_nonce'] ) ||
+				! wp_verify_nonce( $_POST['cf7k_cpt_meta_box_nonce'], 'cf7k_cpt_meta_box_nonce' )
+			) {
 				return;
 			}
 
-			// If our current user can't edit this post, bail.
 			if ( ! current_user_can( 'edit_post', $post_id ) ) {
 				return;
 			}
 
-			update_post_meta( $post_id, 'cf7k_cpt_meta_box', $_POST['cf7k_cpt_meta_box'] );
+			if( isset( $_POST['integrations'] ) ) {
+				update_post_meta( $post_id, 'integrations', $_POST['integrations'] );
+			}
+
+			if( isset( $_POST['cf7_id'] ) ) {
+				update_post_meta( $post_id, 'cf7_id', $_POST['cf7_id'] );
+			}
+
+			if( isset( $_POST['slack'] ) ) {
+				update_post_meta( $post_id, 'slack', $_POST['slack'] );
+			}
         }
 
 		/**
@@ -178,27 +188,29 @@ if ( ! class_exists( 'CF7_kraken_Admin' ) ) {
 				'cf7-select2-styles',
 				'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css',
 				[],
-				cf7_kraken()->plugin_version()
+				cf7k_init()->plugin_version()
 			);
 			wp_enqueue_script(
 				'cf7-select2-script',
 				'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js',
 				[],
-				cf7_kraken()->plugin_version()
+				cf7k_init()->plugin_version()
 			);
 
             wp_enqueue_style(
 				'cf7-admin-styles',
 				$this->admin_assets_url( 'css/main.css' ),
 				[],
-				cf7_kraken()->plugin_version()
+				cf7k_init()->plugin_version()
 			);
+
+			wp_enqueue_style( 'wp-color-picker' );
 
 			wp_enqueue_script(
 				'cf7-admin-script',
 				$this->admin_assets_url( 'js/main.min.js' ),
-				[],
-				cf7_kraken()->plugin_version()
+				[ 'wp-color-picker' ],
+				cf7k_init()->plugin_version()
 			);
 		}
 

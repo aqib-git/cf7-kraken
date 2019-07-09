@@ -138,7 +138,8 @@ if ( ! class_exists( 'CF7_Kraken' ) ) {
 		 */
 		private function __construct() {
             add_action( 'plugins_loaded', [ $this, 'check_cf7_version' ] );
-            add_action( 'init', [ $this, 'i18n' ] );
+			add_action( 'init', [ $this, 'i18n' ] );
+			add_filter( 'wpcf7_posted_data', [ $this, 'submit_handler' ]);
         }
 
         /**
@@ -195,9 +196,7 @@ if ( ! class_exists( 'CF7_Kraken' ) ) {
 		 * @return void
 		 */
 		public function check_cf7_version() {
-            require_once $this->plugin_path . 'includes/utils.php';
-
-            if ( ! Utils::is_plugin_installed( 'contact-form-7' ) ) {
+            if ( ! cf7k_utils::is_plugin_installed( 'contact-form-7' ) ) {
                 if ( current_user_can( 'install_plugins' ) ) {
                     add_action( 'admin_notices', [ $this, 'admin_notice_missing_cf7_plugin' ] );
                 }
@@ -383,9 +382,43 @@ if ( ! class_exists( 'CF7_Kraken' ) ) {
 
 				require_once $this->plugin_path . 'includes/modules/' . $module_name . '/module.php';
 
-				$this->modules[] = new $class_name();
+				$this->modules[ $module_name ] = new $class_name();
             }
-        }
+		}
+
+		/**
+		 * Capture Contact Form 7 post data.
+		 *
+		 * @param [type] $response
+		 * @return void
+		 */
+		public function submit_handler( $response ) {
+			$posts = get_posts( [
+				'post_type'  => 'cf7k_integrations',
+				'numberpost' => -1,
+				'meta_key'   => 'cf7_id',
+				'meta_value' => $response['_wpcf7'],
+			] );
+
+			foreach ( $posts as $post ) {
+				$integrations = get_post_meta( $post->ID, 'integrations', true );
+				$modules      = [];
+
+				foreach ( $this->modules as $module_name => $module ) {
+					if ( in_array( $module_name, $integrations, true ) ) {
+						$modules[] = $module;
+					}
+				}
+
+				foreach ( $modules as $module ) {
+					if ( ! $module->handler( $response ) ) {
+						break;
+					}
+				}
+			}
+
+			return $response;
+		}
 
 		/**
 		 * Do some stuff on plugin activation
@@ -421,16 +454,32 @@ if ( ! class_exists( 'CF7_Kraken' ) ) {
 	}
 }
 
-if ( ! function_exists( 'cf7_kraken' ) ) {
+if ( ! function_exists( 'cf7k_init' ) ) {
 	/**
 	 * Returns instanse of the plugin class.
 	 *
 	 * @since  1.0.0
 	 * @return object
 	 */
-	function cf7_kraken() {
+	function cf7k_init() {
 		return CF7_Kraken::get_instance();
 	}
 }
 
-cf7_kraken();
+cf7k_init();
+
+if ( ! function_exists( 'cf7k_utils' ) ) {
+	require_once cf7k_init()->plugin_path() . 'includes/utils.php';
+
+	/**
+	 * Returns instanse of the plugin class.
+	 *
+	 * @since  1.0.0
+	 * @return object
+	 */
+	function cf7k_utils() {
+		return CF7K_Utils::class;
+	}
+}
+
+cf7k_utils();

@@ -47,12 +47,13 @@ class CF7_Kraken_General_Settings_Metabox {
 			'numberposts' => -1,
 		]);
 
-		$modules = cf7_kraken()->modules;
+		$modules = cf7k_init()->modules;
 
-		$data = get_post_meta( $post->ID, 'cf7k_cpt_meta_box', true );
+		$cf7_id         = get_post_meta( $post->ID, 'cf7_id', true );
+		$integrations   = get_post_meta( $post->ID, 'integrations', true );
 
-		if ( empty ( $data['integrations'] ) ) {
-			$data['integrations'] = [];
+		if ( empty ( $integrations ) ) {
+			$integrations = [];
 		}
 
 		wp_nonce_field( 'cf7k_cpt_meta_box_nonce', 'cf7k_cpt_meta_box_nonce' );
@@ -63,9 +64,9 @@ class CF7_Kraken_General_Settings_Metabox {
 					<tr>
 						<th>Select Contact Form</th>
 						<td>
-							<select name="cf7k_cpt_meta_box[cf7_id]">
+							<select name="cf7_id">
 								<?php foreach( $contact_forms as $contact_form ) : ?>
-									<option value="<?php echo $contact_form->ID; ?>" <?php selected( $data['cf7_id'], $contact_form->ID );?>> <?php echo esc_html( $contact_form->post_title ); ?></option>
+									<option value="<?php echo $contact_form->ID; ?>" <?php selected( $cf7_id, $contact_form->ID );?>> <?php echo esc_html( $contact_form->post_title ); ?></option>
 								<?php endforeach; ?>
 							</select>
 						</td>
@@ -73,9 +74,9 @@ class CF7_Kraken_General_Settings_Metabox {
 					<tr>
 						<th>Enable Integrations</th>
 						<td>
-							<select name="cf7k_cpt_meta_box[integrations][]" class="js-cf7k-integrations" multiple="multiple">
+							<select name="integrations[]" class="js-cf7k-integrations" multiple="multiple">
 								<?php foreach( $modules as $module ) : ?>
-									<option value="<?php echo esc_html( $module->get_name() ); ?>" <?php selected( in_array( $module->get_name(), $data['integrations'], true ), true ); ?>> <?php echo esc_html( $module->get_title() ); ?></option>
+									<option value="<?php echo esc_html( $module->get_name() ); ?>" <?php selected( in_array( $module->get_name(), $integrations, true ), true ); ?>> <?php echo esc_html( $module->get_title() ); ?></option>
 								<?php endforeach; ?>
 							</select>
 						</td>

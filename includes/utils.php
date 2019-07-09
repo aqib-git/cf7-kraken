@@ -13,7 +13,7 @@ defined( 'ABSPATH' ) || die();
  *
  * @since 1.0.0
  */
-class Utils {
+class CF7K_Utils {
 	/**
 	 * Wrapper around the core WP get_plugins function, making sure it's actually available.
 	 *
@@ -46,5 +46,14 @@ class Utils {
 	 */
 	public static function is_plugin_installed( $slug ) {
 		return ! empty( self::get_plugins( '/' . $slug ) );
+	}
+
+	public static function get_cf7_data( array $response ) {
+		if ( empty( $response['_wpcf7'] ) ) {
+			return [];
+		}
+
+
+		error_log(print_r(WPCF7_ContactForm::get_instance(5)->scan_form_tags(), true));
 	}
 }

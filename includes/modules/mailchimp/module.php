@@ -28,7 +28,6 @@ class CF7_Kraken_Mailchimp_Module {
     }
 
     public function add_hooks() {
-        add_filter( 'wpcf7_posted_data', [ $this, 'handler' ]);
         add_action( 'add_meta_boxes', [ $this, 'register_meta_boxes' ] );
     }
 
@@ -53,7 +52,10 @@ class CF7_Kraken_Mailchimp_Module {
     }
 
     public function handler( $response ) {
-        error_log(print_r($response, true));
+		error_log('mailchimp handler');
+		error_log(print_r($response, true));
+
+		return true;
     }
 }
 

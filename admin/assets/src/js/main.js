@@ -11,6 +11,8 @@ var CPTMetabox = {
   bindEvents: function () {
     var self = this
 
+    $('.cf7k-color-picker-field').wpColorPicker();
+
     $('.js-cf7k-integrations').change(function () {
       var selectedIntegrations = $(this).val();
 
