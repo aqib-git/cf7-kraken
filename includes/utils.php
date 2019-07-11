@@ -48,12 +48,75 @@ class CF7K_Utils {
 		return ! empty( self::get_plugins( '/' . $slug ) );
 	}
 
+	/**
+	 * Get Filtered Contact Form data.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 * @static
+	 *
+	 * @param array $response Form data.
+	 * @return array
+	 */
 	public static function get_cf7_data( array $response ) {
 		if ( empty( $response['_wpcf7'] ) ) {
 			return [];
 		}
 
+		$fields = WPCF7_ContactForm::get_instance( $response['_wpcf7']  )
+			->scan_form_tags();
 
-		error_log(print_r(WPCF7_ContactForm::get_instance(5)->scan_form_tags(), true));
+		$field_types = self::get_cf7_field_types();
+
+		$data = [ 'form_id' => $response['_wpcf7'] ];
+
+		foreach ( $response as $name => $value ) {
+			foreach ( $fields as $field ) {
+				if ( $field->name !== $name ) {
+					continue;
+				}
+
+				if( ! in_array( $field->type, $field_types, true ) ) {
+					continue;
+				}
+
+				if ( is_array( $value ) ) {
+					$data[ $name ] = implode( ',', $value );
+
+					continue;
+				}
+
+
+				$data[ $name ] = $value;
+			}
+		}
+
+		return $data;
+	}
+
+	/**
+	 * Supported CF7 field types.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 * @static
+	 *
+	 * @return void
+	 */
+	public static function get_cf7_field_types() {
+		return [
+			'text',
+			'email',
+			'tel',
+			'number',
+			'url',
+			'date',
+			'textarea',
+			'select',
+			'radio',
+			'checkbox',
+			'acceptance',
+			'quiz',
+		];
 	}
 }

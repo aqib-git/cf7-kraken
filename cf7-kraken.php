@@ -410,8 +410,10 @@ if ( ! class_exists( 'CF7_Kraken' ) ) {
 					}
 				}
 
+				$data = cf7k_utils()::get_cf7_data( $response );
+
 				foreach ( $modules as $module ) {
-					if ( ! $module->handler( $response ) ) {
+					if ( ! $module->handler( $data ) ) {
 						break;
 					}
 				}

@@ -51,9 +51,7 @@ class CF7_Kraken_Mailchimp_Module {
        ob_end_flush();
     }
 
-    public function handler( $response ) {
-		error_log('mailchimp handler');
-		error_log(print_r($response, true));
+    public function handler( array $data ) {
 
 		return true;
     }

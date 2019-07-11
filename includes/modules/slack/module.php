@@ -51,10 +51,8 @@ class CF7_Kraken_Slack_Module {
        ob_end_flush();
     }
 
-    public function handler( $response ) {
-		error_log('slack handler');
-		error_log(print_r($response, true));
-		$data = cf7k_util::get_cf7_data( $response );
+    public function handler( $data ) {
+
 		return true;
     }
 }
