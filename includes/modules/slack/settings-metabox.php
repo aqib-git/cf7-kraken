@@ -1,4 +1,11 @@
 <?php
+/**
+ * Template for slack integration metabox.
+ *
+ * @package cf7_kraken
+ * @since 1.0.0
+ */
+
 $slack = get_post_meta( get_the_ID(), 'slack', true );
 $slack = empty( $slack ) ? [] : $slack;
 ?>
@@ -40,7 +47,7 @@ $slack = empty( $slack ) ? [] : $slack;
 			<tr>
 				<th>Description</th>
 				<td>
-					<input type="text" class="large-text code" name="slack[description]" value="<?php echo empty( $slack['description'] ) ? '' : esc_html( $slack['description'] ); ?>">
+					<input type="text" class="large-text code" name="slack[text]" value="<?php echo empty( $slack['text'] ) ? '' : esc_html( $slack['text'] ); ?>">
 				</td>
 			</tr>
 			<tr>

@@ -15,45 +15,94 @@ defined( 'ABSPATH' ) || die();
  */
 class CF7_Kraken_Mailchimp_Module {
 
-    public function get_name() {
+	/**
+	 * Module name.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return string
+	 */
+	public function get_name() {
 		return 'mailchimp';
 	}
 
+	/**
+	 * Module title.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 *
+	 * @return string
+	 */
 	public function get_title() {
 		return __( 'Mailchimp', 'cf7_kraken' );
-    }
+	}
 
-    public function __construct() {
-        $this->add_hooks();
-    }
+	/**
+	 * Constructor.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 */
+	public function __construct() {
+		$this->add_hooks();
+	}
 
-    public function add_hooks() {
-        add_action( 'add_meta_boxes', [ $this, 'register_meta_boxes' ] );
-    }
+	/**
+	 * Register metaboxes.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 */
+	public function add_hooks() {
+		add_action( 'add_meta_boxes', [ $this, 'register_meta_boxes' ] );
+	}
 
-    /**
-     * Register meta box(es).
-     */
-    public function register_meta_boxes() {
-        add_meta_box(
-            'cf7k_mailchimp_integration_metabox',
-            __( 'Mailchimp Settings', 'cf7_kraken' ),
-            [ $this, 'mailchimp_integration_metabox_cb'],
-            'cf7k_integrations',
-            'normal',
-            'high'
-        );
-    }
+	/**
+	 * Register metaboxes.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 */
+	public function register_meta_boxes() {
+		add_meta_box(
+			'cf7k_mailchimp_integration_metabox',
+			__( 'Mailchimp Settings', 'cf7_kraken' ),
+			[ $this, 'mailchimp_integration_metabox_cb'],
+			'cf7k_integrations',
+			'normal',
+			'high'
+		);
+	}
 
-    public function mailchimp_integration_metabox_cb() {
-       ob_start();
-       include_once __DIR__ . '/settings_metabox.php';
-       ob_end_flush();
-    }
+	/**
+	 * Metabox callback.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 *
+	 * @return void
+	 */
+	public function mailchimp_integration_metabox_cb() {
+		ob_start();
 
-    public function handler( array $data ) {
+		include_once __DIR__ . '/settings-metabox.php';
 
+		ob_end_flush();
+	}
+
+	/**
+	 * Contact Form 7 submit hook.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 *
+	 * @param integer $post_id Post Id.
+	 * @param array   $form_fields Form Fields.
+	 *
+	 * @return boolean
+	 */
+	public function handler( $post_id, array $form_fields ) {
 		return true;
-    }
+	}
 }
-

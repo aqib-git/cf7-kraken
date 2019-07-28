@@ -1,0 +1,5 @@
+{
+    "require-dev": {
+        "edgedesign/phpqa": "^1.22"
+    }
+}

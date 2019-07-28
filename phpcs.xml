@@ -2,13 +2,21 @@
 <ruleset name="Gutenpack">
 	<description>Gutenpack PHPCS Ruleset</description>
 
-	<config name="installed_paths" value="wpcs" />
-
 	<exclude-pattern>vendor/</exclude-pattern>
 	<exclude-pattern>build/</exclude-pattern>
 	<exclude-pattern>node_modules/</exclude-pattern>
 	<exclude-pattern>wpcs/</exclude-pattern>
 	<exclude-pattern>index.php</exclude-pattern>
 
-	<rule ref="WordPress"/>
+	<rule ref="WordPress">
+		<exclude name="PEAR.NamingConventions.ValidClassName.StartWithCapital"/>
+		<exclude name="PEAR.Functions.FunctionCallSignature.MultipleArguments"/>
+		<exclude name="PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket"/>
+		<exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine"/>
+		<exclude name="WordPress.PHP.NoSilencedErrors.Discouraged" />
+		<exclude name="WordPress.Files.FileName.InvalidClassFileName" />
+		<exclude name="WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned" />
+		<exclude name="PSR2.Methods.MethodDeclaration.Underscore" />
+		<exclude name="Generic.WhiteSpace.ScopeIndent.IncorrectExact" />
+	</rule>
 </ruleset>

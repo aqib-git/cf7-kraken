@@ -81,11 +81,10 @@ class CF7K_Utils {
 				}
 
 				if ( is_array( $value ) ) {
-					$data[ $name ] = implode( ',', $value );
+					$data[ $name ] = implode( ', ', $value );
 
 					continue;
 				}
-
 
 				$data[ $name ] = $value;
 			}
