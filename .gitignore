@@ -1,5 +1,5 @@
 vendor/
 wpcs/
 node_modules/
-admin/assets/css
-admin/assets/js
+assets/css
+assets/js

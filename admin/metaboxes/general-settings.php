@@ -34,7 +34,7 @@ class CF7_Kraken_General_Settings_Metabox {
 	public function __construct() {
 		add_meta_box(
 			$this->id,
-			__( 'General Settings', 'cf7_kraken' ),
+			__( 'General Settings', 'cf7-kraken' ),
 			[ $this, 'template' ],
 			'cf7k_integrations',
 			'normal',

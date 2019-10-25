@@ -15,16 +15,6 @@ if ( ! class_exists( 'CF7_kraken_Admin' ) ) {
 	class CF7_Kraken_Admin {
 
 		/**
-		 * The plugin admin assets URL.
-		 *
-		 * @since 1.0.0
-		 * @access private
-		 *
-		 * @var string
-		 */
-		private $admin_assets_url;
-
-		/**
 		 * A reference to an instance of this class.
 		 *
 		 * @since  1.0.0
@@ -66,8 +56,6 @@ if ( ! class_exists( 'CF7_kraken_Admin' ) ) {
 		 * @return void
 		 */
 		public function __construct() {
-			$this->admin_assets_url = trailingslashit( cf7k_init()->plugin_url() . '/admin/assets' );
-
 			$this->add_admin_hooks();
 		}
 
@@ -214,45 +202,37 @@ if ( ! class_exists( 'CF7_kraken_Admin' ) ) {
 		 * @access public
 		 */
 		public function register_assets() {
+			$plugin = cf7k_init();
+
 			wp_enqueue_style(
 				'cf7-select2-styles',
 				'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css',
 				[],
-				cf7k_init()->plugin_version()
+				$plugin->plugin_version()
 			);
 			wp_enqueue_script(
 				'cf7-select2-script',
 				'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js',
 				[ 'jquery' ],
-				cf7k_init()->plugin_version()
+				$plugin->plugin_version()
 			);
 
 			wp_enqueue_style(
 				'cf7-admin-styles',
-				$this->admin_assets_url( 'css/main.css' ),
+				$plugin->plugin_assets_url( 'css/admin' . CF7K_MIN_CSS . '.css' ),
 				[],
-				cf7k_init()->plugin_version()
+				$plugin->plugin_version()
 			);
 
 			wp_enqueue_style( 'wp-color-picker' );
 
 			wp_enqueue_script(
 				'cf7-admin-script',
-				$this->admin_assets_url( 'js/main.min.js' ),
+				$plugin->plugin_assets_url( 'js/admin' . CF7K_MIN_JS . '.js' ),
 				[ 'jquery', 'wp-color-picker', 'cf7-select2-script' ],
-				cf7k_init()->plugin_version(),
+				$plugin->plugin_version(),
 				true
 			);
-		}
-
-		/**
-		 * Returns url to admin assets.
-		 *
-		 * @param  string $path Path inside admin assets.
-		 * @return string
-		 */
-		public function admin_assets_url( $path = null ) {
-			return $this->admin_assets_url . $path;
 		}
 
 		/**

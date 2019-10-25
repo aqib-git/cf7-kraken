@@ -75,4 +75,30 @@
   }
 
   CPTMetabox.init();
+
+  class Mailchimp {
+    constructor() {
+      this.bindEvents()
+    }
+
+    bindEvents() {
+      let $metabox = $('#cf7k_mailchimp_integration_metabox')
+
+      $metabox
+        .find('input[name="mailchimp[api_key]"]')
+        .keyup((e) => _.throttle(this.onApiKeyChange(e), 1000))
+    }
+
+    onApiKeyChange(event) {
+      let key = event.target.value
+
+      this.getAudienceList(key)
+    }
+
+    getAudienceList(key) {
+
+    }
+  }
+
+  new Mailchimp()
 }(jQuery));

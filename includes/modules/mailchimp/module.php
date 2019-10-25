@@ -35,7 +35,7 @@ class CF7_Kraken_Mailchimp_Module {
 	 * @return string
 	 */
 	public function get_title() {
-		return __( 'Mailchimp', 'cf7_kraken' );
+		return __( 'Mailchimp', 'cf7-kraken' );
 	}
 
 	/**
@@ -67,7 +67,7 @@ class CF7_Kraken_Mailchimp_Module {
 	public function register_meta_boxes() {
 		add_meta_box(
 			'cf7k_mailchimp_integration_metabox',
-			__( 'Mailchimp Settings', 'cf7_kraken' ),
+			__( 'Mailchimp Settings', 'cf7-kraken' ),
 			[ $this, 'mailchimp_integration_metabox_cb'],
 			'cf7k_integrations',
 			'normal',

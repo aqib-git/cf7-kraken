@@ -6,7 +6,7 @@
  * Version:     1.0.0
  * Author:      CodeCrud
  * Author URI:  https://codecrud.com/
- * Text Domain: cf7_kraken
+ * Text Domain: cf7-kraken
  * License:     GPL-2.0+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  * Domain Path: /includes/languages
@@ -352,6 +352,11 @@ if ( ! class_exists( 'CF7_Kraken' ) ) {
 			$this->plugin_path       = trailingslashit( plugin_dir_path( __FILE__ ) );
 			$this->plugin_url        = trailingslashit( plugin_dir_url( __FILE__ ) );
 			$this->plugin_assets_url = trailingslashit( $this->plugin_url . 'assets' );
+
+			// Assets.
+			define( 'CF7K_MIN_CSS', SCRIPT_DEBUG ? '' : '.min' );
+			define( 'CF7K_MIN_JS', SCRIPT_DEBUG ? '' : '.min' );
+			define( 'CF7K_RTL', is_rtl() ? '-rtl' : '' );
 		}
 
 		/**

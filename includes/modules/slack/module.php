@@ -35,7 +35,7 @@ class CF7_Kraken_Slack_Module {
 	 * @return string
 	 */
 	public function get_title() {
-		return __( 'Slack', 'cf7_kraken' );
+		return __( 'Slack', 'cf7-kraken' );
 	}
 
 	/**
@@ -71,7 +71,7 @@ class CF7_Kraken_Slack_Module {
 	public function register_meta_boxes() {
 		add_meta_box(
 			'cf7k_slack_integration_metabox',
-			__( 'Slack Settings', 'cf7_kraken' ),
+			__( 'Slack Settings', 'cf7-kraken' ),
 			[ $this, 'slack_integration_metabox_cb' ],
 			'cf7k_integrations',
 			'normal',
@@ -166,7 +166,7 @@ class CF7_Kraken_Slack_Module {
 			$attachment = array_merge(
 				$attachment,
 				[
-					'footer' => sprintf( __( 'Powered by %s', 'cf7_kraken' ), 'CF7 Kraken' ),
+					'footer' => sprintf( __( 'Powered by %s', 'cf7-kraken' ), 'CF7 Kraken' ),
 					'footer_icon' => '',
 				]
 			);
