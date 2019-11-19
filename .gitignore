@@ -3,3 +3,4 @@ wpcs/
 node_modules/
 assets/css
 assets/js
+build/

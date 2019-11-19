@@ -73,6 +73,7 @@ if ( ! class_exists( 'CF7_kraken_Admin' ) ) {
 			add_action( 'add_meta_boxes', [ $this, 'register_meta_boxes' ] );
 			add_action( 'admin_enqueue_scripts', [ $this, 'register_assets' ] );
 			add_action( 'save_post_cf7k_integrations', [ $this, 'save_cpt_meta_boxes' ] );
+			add_action( 'wp_ajax_cf7k_get_cf7_fields', [ $this, 'get_cf7_fields' ] );
 		}
 
 		/**
@@ -193,6 +194,35 @@ if ( ! class_exists( 'CF7_kraken_Admin' ) ) {
 			if ( isset( $data['slack'] ) ) {
 				update_post_meta( $post_id, 'slack', $data['slack'] );
 			}
+
+			if ( isset( $data['mailchimp'] ) ) {
+				update_post_meta( $post_id, 'mailchimp', $data['mailchimp'] );
+			}
+		}
+
+		/**
+		 * Get contact form 7 fields by id.
+		 *
+		 * @since 1.0.0
+		 * @access public
+		 *
+		 * @return mixed
+		 */
+		public function get_cf7_fields() {
+			if ( empty( $_POST['id'] ) ) {
+				wp_send_json_error( __( 'id field is missing', 'cf7-kraken' ) );
+			}
+
+			$id = filter_var( $_POST['id'], FILTER_VALIDATE_INT );
+
+			$fields = WPCF7_ContactForm::get_instance( $id )
+				->scan_form_tags();
+
+			$fields = array_filter( $fields, function ( $field ) {
+				return $field['type'] !== 'file' && $field['type'] != 'submit';
+			} );
+
+			wp_send_json_success( $fields );
 		}
 
 		/**
@@ -229,7 +259,7 @@ if ( ! class_exists( 'CF7_kraken_Admin' ) ) {
 			wp_enqueue_script(
 				'cf7-admin-script',
 				$plugin->plugin_assets_url( 'js/admin' . CF7K_MIN_JS . '.js' ),
-				[ 'jquery', 'wp-color-picker', 'cf7-select2-script' ],
+				[ 'jquery', 'wp-color-picker', 'cf7-select2-script', 'wp-util' ],
 				$plugin->plugin_version(),
 				true
 			);

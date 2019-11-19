@@ -370,6 +370,23 @@ if ( ! class_exists( 'CF7_Kraken' ) ) {
 		}
 
 		/**
+		 * Loads specified PHP files from the plugin includes directory.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param array $file_names The names of the files to be loaded in the includes directory.
+		 */
+		public function load_files( $file_names = [] ) {
+			foreach ( $file_names as $file_name ) {
+				$path = $this->plugin_path( 'includes/' . $file_name . '.php' );
+
+				if ( file_exists( $path ) ) {
+					require_once $path;
+				}
+			}
+		}
+
+		/**
 		 * Register modules.
 		 *
 		 * @since 1.0.0

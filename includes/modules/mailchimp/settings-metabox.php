@@ -16,7 +16,7 @@ $mailchimp = empty( $mailchimp ) ? [] : $mailchimp;
 			<tr>
 				<th><?php esc_html_e( 'API Key', 'cf7-kraken' ); ?></th>
 				<td>
-					<input type="text" class="large-text code" name="mailchimp[api_key]" value="<?php echo empty( $mailchimp['api_key'] ) ? '' : esc_url( $mailchimp['api_key'] ); ?>">
+					<input type="text" class="large-text code" name="mailchimp[api_key]" value="<?php echo empty( $mailchimp['api_key'] ) ? '' : esc_attr( $mailchimp['api_key'] ); ?>">
 					<div>
 						<small>
 							<i>
@@ -32,15 +32,44 @@ $mailchimp = empty( $mailchimp ) ? [] : $mailchimp;
 			<tr>
 				<th><?php esc_html_e( 'Audience', 'cf7-kraken' ); ?></th>
 				<td>
-					<select name="mailchimp[audience]">
-						<option value="">- None -</option>
-					</select>
+					<div class="cf7k-cpt-metabox-mailchimp-audience">
+						<select name="mailchimp[audience]" data-value="<?php echo esc_attr( $mailchimp['audience'] ); ?>">
+							<option value="">- None -</option>
+						</select>
+						<i class="cf7k-spin dashicons dashicons-update-alt"></i>
+					</div>
 				</td>
 			</tr>
-			<tr>
+			<tr class="cf7k-cpt-metabox-mailchimp-groups-row hidden">
+				<th><?php esc_html_e( 'Groups', 'cf7-kraken' ); ?></th>
+				<td>
+					<div class="cf7k-cpt-metabox-mailchimp-groups">
+						<select name="mailchimp[groups][]" multiple="multiple" data-value="<?php echo esc_attr( json_encode( $mailchimp['groups'] ) ); ?>">
+						</select>
+						<i class="cf7k-spin dashicons dashicons-update-alt"></i>
+					</div>
+				</td>
+			</tr>
+			<tr class="cf7k-cpt-metabox-mailchimp-double-optin-row hidden">
 				<th><?php esc_html_e( 'Double Opt-In', 'cf7-kraken' ); ?></th>
 				<td>
 					<input type="checkbox" value="yes" name="mailchimp[double_optin]" <?php checked( ! empty( $mailchimp['double_optin'] ), true )?>>
+				</td>
+			</tr>
+			</tr>
+			<tr class="cf7k-cpt-metabox-mailchimp-field-mapping-row hidden">
+				<th><?php esc_html_e( 'Field Mapping', 'cf7-kraken' ); ?></th>
+				<td>
+					<i class="cf7k-spin dashicons dashicons-update-alt"></i>
+					<div class="cf7k-cpt-metabox-mailchimp-field-mapping-header hidden">
+						<div><strong><?php echo __( 'Form Field'); ?></strong></div>
+						<div><strong><?php echo __( 'Mailchimp Merge Fields'); ?></strong></div>
+					</div>
+					<div class="cf7k-cpt-metabox-mailchimp-field-mapping hidden"></div>
+					<div class="cf7k-cpt-metabox-mailchimp-field-mapping-add hidden">
+						<button type="button" class="button button-primary button-large">Add</button>
+					</div>
+					<input type="hidden" name="mailchimp[field_mapping]" value="<?php echo esc_attr( $mailchimp['field_mapping'] ); ?>">
 				</td>
 			</tr>
 		</tbody>

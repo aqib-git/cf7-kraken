@@ -55,7 +55,16 @@ class CF7_Kraken_Mailchimp_Module {
 	 * @access public
 	 */
 	public function add_hooks() {
+		$plugin = cf7k_init();
+
+		$plugin->load_files( [
+			'modules/mailchimp/classes/mailchimp-helper',
+		] );
+
 		add_action( 'add_meta_boxes', [ $this, 'register_meta_boxes' ] );
+		add_action( 'wp_ajax_cf7k_mailchimp_get_audience', [ CF7_Kraken_Mailchimp_Helper::class, 'get_audience' ] );
+		add_action( 'wp_ajax_cf7k_mailchimp_get_audience_groups', [ CF7_Kraken_Mailchimp_Helper::class, 'get_audience_groups' ] );
+		add_action( 'wp_ajax_cf7k_mailchimp_get_audience_fields', [ CF7_Kraken_Mailchimp_Helper::class, 'get_audience_fields' ] );
 	}
 
 	/**

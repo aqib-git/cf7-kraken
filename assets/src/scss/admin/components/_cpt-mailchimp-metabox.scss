@@ -4,4 +4,52 @@
 	&.enabled {
 		display: block;
 	}
+
+	i.#{$prefix}-spin {
+		animation:  #{$prefix}-spin 2s linear infinite;
+	}
+
+	.cf7k-cpt-metabox-mailchimp {
+		&-audience, &-groups {
+			display: flex;
+			align-items: center;
+
+			i {
+				margin-left: 5px;
+			}
+		}
+
+		&-field-mapping {
+			overflow: hidden;
+		}
+
+		&-field-mapping-header {
+			overflow: hidden;
+			margin-bottom: 20px;
+
+			> div {
+				width: 45%;
+				float: left;
+			}
+		}
+
+		&-field-mapping-row {
+			overflow: hidden;
+			margin-bottom: 15px;
+
+			> div {
+				float: left;
+				width: 45%;
+			}
+
+			> div:last-child {
+				float: left;
+				width: 10%;
+
+				i {
+					cursor: pointer;
+				}
+			}
+		}
+	}
 }
