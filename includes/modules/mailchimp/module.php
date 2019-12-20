@@ -201,7 +201,7 @@ class CF7_Kraken_Mailchimp_Module {
 	 * @param array $form_fields Form Fields.
 	 * @return void
 	 */
-	private static function map_fields( $field_mapping, $form_fields ) {
+	protected function map_fields( $field_mapping, $form_fields ) {
 		$mapping = [];
 
 		foreach ( $field_mapping as $map_item ) {
