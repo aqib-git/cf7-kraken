@@ -105,7 +105,6 @@ class CF7_Kraken_Slack_Module {
 	 * @return boolean
 	 */
 	public function handler( $post_id, array $form_fields ) {
-
 		$settings = get_post_meta( $post_id, 'slack', true );
 
 		if (

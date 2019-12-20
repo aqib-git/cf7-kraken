@@ -76,7 +76,7 @@ class CF7K_Utils {
 					continue;
 				}
 
-				if( ! in_array( $field->type, $field_types, true ) ) {
+				if( ! in_array( $field->basetype, $field_types, true ) ) {
 					continue;
 				}
 

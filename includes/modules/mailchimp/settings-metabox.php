@@ -44,7 +44,7 @@ $mailchimp = empty( $mailchimp ) ? [] : $mailchimp;
 				<th><?php esc_html_e( 'Groups', 'cf7-kraken' ); ?></th>
 				<td>
 					<div class="cf7k-cpt-metabox-mailchimp-groups">
-						<select name="mailchimp[groups][]" multiple="multiple" data-value="<?php echo esc_attr( json_encode( $mailchimp['groups'] ) ); ?>">
+						<select name="mailchimp[groups][]" multiple="multiple" data-value="<?php echo esc_attr( json_encode( empty( $mailchimp['groups'] ) ? [] : $mailchimp['groups'] ) ); ?>">
 						</select>
 						<i class="cf7k-spin dashicons dashicons-update-alt"></i>
 					</div>
