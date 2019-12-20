@@ -1,14 +1,13 @@
 (function($) {
-  /* Metabox */
-  var CPTMetabox = {
-    integrations: ['slack', 'mailchimp'],
-
-    init: function () {
+  /* Main Metabox */
+  class Main_Metabox {
+    constructor () {
+      this.integrations = ['slack', 'mailchimp']
       this.initIntegrations();
       this.bindEvents();
-    },
+    }
 
-    bindEvents: function () {
+    bindEvents () {
       var self = this;
 
       $('.cf7k-color-picker-field').wpColorPicker();
@@ -22,9 +21,9 @@
 
         self.integrationsVisibility(selectedIntegrations);
       });
-    },
+    }
 
-    initIntegrations: function () {
+    initIntegrations () {
       var $integrations = $('.js-cf7k-integrations');
 
       $integrations.select2({
@@ -59,9 +58,9 @@
       });
 
       this.integrationsVisibility($integrations.val() || []);
-    },
+    }
 
-    integrationsVisibility: function (selectedIntegrations) {
+    integrationsVisibility (selectedIntegrations) {
       for (var i = 0; i < this.integrations.length; i++) {
         var integration = this.integrations[i];
 
@@ -74,9 +73,10 @@
     }
   }
 
-  CPTMetabox.init();
+  new Main_Metabox();
 
-  class Mailchimp {
+  /* Mailchimp Metabox */
+  class Mailchimp_Metabox {
     constructor() {
       this.$metabox = $('#cf7k_mailchimp_integration_metabox')
       this.$apiKey = this.$metabox
@@ -351,5 +351,5 @@
     }
   }
 
-  new Mailchimp()
+  new Mailchimp_Metabox()
 }(jQuery));
