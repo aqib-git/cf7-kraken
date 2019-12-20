@@ -429,9 +429,9 @@ if ( ! class_exists( 'CF7_Kraken' ) ) {
 				$integrations = get_post_meta( $post->ID, 'integrations', true );
 				$modules      = [];
 
-				foreach ( $this->modules as $module_name => $module ) {
-					if ( in_array( $module_name, $integrations, true ) ) {
-						$modules[] = $module;
+				foreach ( $integrations as $integration ) {
+					if ( isset( $this->modules[ $integration ] ) ) {
+						$modules[] = $this->modules[ $integration ];
 					}
 				}
 

@@ -187,7 +187,11 @@ class CF7_Kraken_Mailchimp_Module {
 				'lists/' . $audience . '/members/' . md5( strtolower( $field_mapping[ 'email_address' ] ) ),
 				$post_data
 			);
-		} catch ( \Exception $e ) {}
+		} catch ( \Exception $e ) {
+			return false;
+		}
+
+		return true;
 	}
 
 	/**
