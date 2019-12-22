@@ -2,8 +2,12 @@
   /* Main Metabox */
   class Main_Metabox {
     constructor () {
+      this.$cf7Id = $('select[name="cf7_id"]')
+      this.$metabox = $('.cf7k-cpt-metabox');
       this.integrations = ['slack', 'mailchimp']
+
       this.initIntegrations();
+
       this.bindEvents();
     }
 
@@ -57,7 +61,10 @@
         }
       });
 
-      this.integrationsVisibility($integrations.val() || []);
+      if (this.$cf7Id.length > 0) {
+        this.$metabox.find('.integrations-row').removeClass('hidden')
+        this.integrationsVisibility($integrations.val() || []);
+      }
     }
 
     integrationsVisibility (selectedIntegrations) {

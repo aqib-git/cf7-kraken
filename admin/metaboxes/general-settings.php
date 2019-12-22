@@ -89,14 +89,18 @@ class CF7_Kraken_General_Settings_Metabox {
 					<tr>
 						<th>Select Contact Form</th>
 						<td>
-							<select name="cf7_id">
-								<?php foreach ( $contact_forms as $contact_form ) : ?>
-									<option value="<?php echo esc_attr( $contact_form->ID ); ?>" <?php echo esc_attr( selected( $cf7_id, $contact_form->ID, false ) ); ?>> <?php echo esc_html( $contact_form->post_title ); ?></option>
-								<?php endforeach; ?>
-							</select>
+							<?php if ( count( $contact_forms ) > 0 ): ?>
+								<select name="cf7_id">
+									<?php foreach ( $contact_forms as $contact_form ) : ?>
+										<option value="<?php echo esc_attr( $contact_form->ID ); ?>" <?php echo esc_attr( selected( $cf7_id, $contact_form->ID, false ) ); ?>> <?php echo esc_html( $contact_form->post_title ); ?></option>
+									<?php endforeach; ?>
+								</select>
+							<?php else : ?>
+								<a class="create-cf7-link" href="<?php echo esc_url( admin_url( 'admin.php?page=wpcf7-new' ) ); ?>" target="_blank">Create a Contact Form <i class="dashicons dashicons-external"></i></a>
+							<?php endif; ?>
 						</td>
 					</tr>
-					<tr>
+					<tr class="integrations-row hidden">
 						<th>Enable Integrations</th>
 						<td>
 							<select name="integrations[]" class="js-cf7k-integrations" multiple="multiple">
