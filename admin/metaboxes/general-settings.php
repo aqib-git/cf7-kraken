@@ -96,7 +96,7 @@ class CF7_Kraken_General_Settings_Metabox {
 									<?php endforeach; ?>
 								</select>
 							<?php else : ?>
-								<a class="create-cf7-link" href="<?php echo esc_url( admin_url( 'admin.php?page=wpcf7-new' ) ); ?>" target="_blank">Create a Contact Form <i class="dashicons dashicons-external"></i></a>
+								<a class="create-cf7-link" href="<?php echo esc_url( admin_url( 'admin.php?page=wpcf7-new' ) ); ?>" target="_blank"><?php esc_html_e( 'Create a Contact Form', 'cf7-kraken' ); ?> <i class="dashicons dashicons-external"></i></a>
 							<?php endif; ?>
 						</td>
 					</tr>
