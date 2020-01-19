@@ -183,10 +183,11 @@ class CF7_Kraken_Mailchimp_Module {
 				$post_data['interests'] = $audience_interests;
 			}
 
-			$handler->put(
+			$response = $handler->put(
 				'lists/' . $audience . '/members/' . md5( strtolower( $field_mapping[ 'email_address' ] ) ),
 				$post_data
 			);
+
 		} catch ( \Exception $e ) {
 			return false;
 		}

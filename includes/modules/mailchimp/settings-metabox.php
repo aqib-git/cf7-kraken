@@ -29,7 +29,7 @@ $mailchimp = empty( $mailchimp ) ? [] : $mailchimp;
 					</div>
 				</td>
 			</tr>
-			<tr>
+			<tr class="cf7k-cpt-metabox-mailchimp-audience-row hidden">
 				<th><?php esc_html_e( 'Audience', 'cf7-kraken' ); ?></th>
 				<td>
 					<div class="cf7k-cpt-metabox-mailchimp-audience">
