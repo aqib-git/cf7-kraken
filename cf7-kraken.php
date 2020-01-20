@@ -139,7 +139,7 @@ if ( ! class_exists( 'CF7_Kraken' ) ) {
 		private function __construct() {
 			add_action( 'plugins_loaded', [ $this, 'check_cf7_version' ] );
 			add_action( 'init', [ $this, 'i18n' ] );
-			add_filter( 'wpcf7_posted_data', [ $this, 'submit_handler' ]);
+			add_filter( 'wpcf7_posted_data', [ $this, 'submit_handler' ] );
 		}
 
 		/**
@@ -269,7 +269,7 @@ if ( ! class_exists( 'CF7_Kraken' ) ) {
 				$install_link, esc_html__( 'Install Contact Form 7 Now', 'raven' )
 			);
 
-			printf( '<div class="notice notice-error"><p>%1$s</p></div>', $message );
+			printf( '<div class="notice notice-error"><p>%1$s</p></div>', $message ); // phpcs:ignore WordPress.Security
 		}
 
 		/**
@@ -301,7 +301,7 @@ if ( ! class_exists( 'CF7_Kraken' ) ) {
 				$activation_link, esc_html__( 'Activate Contact Form 7 Now', 'raven' )
 			);
 
-			printf( '<div class="notice notice-error"><p>%1$s</p></div>', $message );
+			printf( '<div class="notice notice-error"><p>%1$s</p></div>', $message ); // phpcs:ignore WordPress.Security
 		}
 
 		/**
@@ -335,7 +335,7 @@ if ( ! class_exists( 'CF7_Kraken' ) ) {
 				$update_link, esc_html__( 'Update Contact Form 7 Now', 'raven' )
 			);
 
-			printf( '<div class="notice notice-error"><p>%1$s</p></div>', $message );
+			printf( '<div class="notice notice-error"><p>%1$s</p></div>', $message ); // phpcs:ignore WordPress.Security
 		}
 
 		/**
@@ -414,15 +414,15 @@ if ( ! class_exists( 'CF7_Kraken' ) ) {
 		 * @since 1.0.0
 		 * @access public
 		 *
-		 * @param array $response
-		 * @return void
+		 * @param array $response Contact Form 7 Response.
+		 * @return array
 		 */
 		public function submit_handler( $response ) {
 			$posts = get_posts( [
 				'post_type'  => 'cf7k_integrations',
 				'numberpost' => -1,
-				'meta_key'   => 'cf7_id',
-				'meta_value' => $response['_wpcf7'],
+				'meta_key'   => 'cf7_id', // phpcs:ignore WordPress.DB.SlowDBQuery
+				'meta_value' => $response['_wpcf7'], // phpcs:ignore WordPress.DB.SlowDBQuery
 			] );
 
 			foreach ( $posts as $post ) {

@@ -44,7 +44,7 @@ $mailchimp = empty( $mailchimp ) ? [] : $mailchimp;
 				<th><?php esc_html_e( 'Groups', 'cf7-kraken' ); ?></th>
 				<td>
 					<div class="cf7k-cpt-metabox-mailchimp-groups">
-						<select name="mailchimp[groups][]" multiple="multiple" data-value="<?php echo esc_attr( json_encode( empty( $mailchimp['groups'] ) ? [] : $mailchimp['groups'] ) ); ?>">
+						<select name="mailchimp[groups][]" multiple="multiple" data-value="<?php echo esc_attr( wp_json_encode( empty( $mailchimp['groups'] ) ? [] : $mailchimp['groups'] ) ); ?>">
 						</select>
 						<i class="cf7k-spin dashicons dashicons-update-alt"></i>
 					</div>
@@ -53,7 +53,7 @@ $mailchimp = empty( $mailchimp ) ? [] : $mailchimp;
 			<tr class="cf7k-cpt-metabox-mailchimp-double-optin-row hidden">
 				<th><?php esc_html_e( 'Double Opt-In', 'cf7-kraken' ); ?></th>
 				<td>
-					<input type="checkbox" value="yes" name="mailchimp[double_optin]" <?php checked( ! empty( $mailchimp['double_optin'] ), true )?>>
+					<input type="checkbox" value="yes" name="mailchimp[double_optin]" <?php checked( ! empty( $mailchimp['double_optin'] ), true ); ?>>
 				</td>
 			</tr>
 			</tr>
@@ -62,8 +62,8 @@ $mailchimp = empty( $mailchimp ) ? [] : $mailchimp;
 				<td>
 					<i class="cf7k-spin dashicons dashicons-update-alt"></i>
 					<div class="cf7k-cpt-metabox-mailchimp-field-mapping-header hidden">
-						<div><strong><?php echo __( 'Form Field'); ?></strong></div>
-						<div><strong><?php echo __( 'Mailchimp Merge Fields'); ?></strong></div>
+						<div><strong><?php esc_html_e( 'Form Field', 'cf7-kraken' ); ?></strong></div>
+						<div><strong><?php esc_html_e( 'Mailchimp Merge Fields', 'cf7-kraken' ); ?></strong></div>
 					</div>
 					<div class="cf7k-cpt-metabox-mailchimp-field-mapping hidden"></div>
 					<div class="cf7k-cpt-metabox-mailchimp-field-mapping-add hidden">

@@ -1,5 +1,18 @@
 <?php
+/**
+ * Mailchimp helpers.
+ *
+ * @package cf7_kraken
+ * @since 1.0.0
+ */
 
+defined( 'ABSPATH' ) || die();
+
+/**
+ * Mailchimp Helper Class.
+ *
+ * @since 1.0.0
+ */
 class CF7_Kraken_Mailchimp_Helper {
 
 	/**
@@ -18,11 +31,11 @@ class CF7_Kraken_Mailchimp_Helper {
 			'modules/mailchimp/classes/mailchimp-api',
 		] );
 
-		if ( empty( $_POST['api_key'] ) ) {
+		if ( empty( $_POST['api_key'] ) ) { // phpcs:ignore WordPress.Security
 			wp_send_json_error( 'api_key field is empty' );
 		}
 
-		$api_key = $_POST['api_key'];
+		$api_key = wp_unslash( $_POST['api_key'] ); // phpcs:ignore WordPress.Security
 
 		try {
 			$handler = new CF7_Kraken_MailChimp_API( $api_key );
@@ -57,16 +70,16 @@ class CF7_Kraken_Mailchimp_Helper {
 			'modules/mailchimp/classes/mailchimp-api',
 		] );
 
-		if ( empty( $_POST['api_key'] ) ) {
+		if ( empty( $_POST['api_key'] ) ) { // phpcs:ignore WordPress.Security
 			wp_send_json_error( 'api_key field is empty' );
 		}
 
-		if ( empty( $_POST['list_id'] ) ) {
+		if ( empty( $_POST['list_id'] ) ) { // phpcs:ignore WordPress.Security
 			wp_send_json_error( 'list_id field is empty' );
 		}
 
-		$api_key = $_POST['api_key'];
-		$list_id = $_POST['list_id'];
+		$api_key = wp_unslash( $_POST['api_key'] ); // phpcs:ignore WordPress.Security
+		$list_id = wp_unslash( $_POST['list_id'] ); // phpcs:ignore WordPress.Security
 
 		try {
 			$handler = new CF7_Kraken_MailChimp_API( $api_key );
@@ -110,17 +123,16 @@ class CF7_Kraken_Mailchimp_Helper {
 			'modules/mailchimp/classes/mailchimp-api',
 		] );
 
-
-		if ( empty( $_POST['api_key'] ) ) {
+		if ( empty( $_POST['api_key'] ) ) { // phpcs:ignore WordPress.Security
 			wp_send_json_error( 'api_key field is empty' );
 		}
 
-		if ( empty( $_POST['list_id'] ) ) {
+		if ( empty( $_POST['list_id'] ) ) { // phpcs:ignore WordPress.Security
 			wp_send_json_error( 'list_id field is empty' );
 		}
 
-		$api_key = $_POST['api_key'];
-		$list_id = $_POST['list_id'];
+		$api_key = $_POST['api_key']; // phpcs:ignore WordPress.Security
+		$list_id = $_POST['list_id']; // phpcs:ignore WordPress.Security
 		$handler = new CF7_Kraken_MailChimp_API( $api_key );
 
 		$merge_fields = $handler->get( 'lists/' . $list_id . '/merge-fields?count=999' );

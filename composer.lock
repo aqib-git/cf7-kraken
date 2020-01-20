@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7de9ded6068b68c51e8eb128b9e5a0bc",
+    "content-hash": "832ca9597b5d401092cb1f5ce437df61",
     "packages": [],
     "packages-dev": [
         {
@@ -625,20 +625,20 @@
         },
         {
             "name": "edgedesign/phpqa",
-            "version": "v1.22.1",
+            "version": "v1.23.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/EdgedesignCZ/phpqa.git",
-                "reference": "35ff1871b913f54e4c28b10ab0b50607376b7d50"
+                "reference": "a1ecc21a181f0ba6fd830afadb336e55e4f67e9f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/EdgedesignCZ/phpqa/zipball/35ff1871b913f54e4c28b10ab0b50607376b7d50",
-                "reference": "35ff1871b913f54e4c28b10ab0b50607376b7d50",
+                "url": "https://api.github.com/repos/EdgedesignCZ/phpqa/zipball/a1ecc21a181f0ba6fd830afadb336e55e4f67e9f",
+                "reference": "a1ecc21a181f0ba6fd830afadb336e55e4f67e9f",
                 "shasum": ""
             },
             "require": {
-                "consolidation/robo": "~0|~1",
+                "consolidation/robo": "~0.5|~1",
                 "ext-xsl": "*",
                 "pdepend/pdepend": "*",
                 "php": ">=5.4",
@@ -696,7 +696,7 @@
                 "qa",
                 "static analysis"
             ],
-            "time": "2019-07-14T09:17:16+00:00"
+            "time": "2019-11-30T11:13:13+00:00"
         },
         {
             "name": "grasmash/expander",

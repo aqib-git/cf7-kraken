@@ -77,7 +77,7 @@ class CF7_Kraken_Mailchimp_Module {
 		add_meta_box(
 			'cf7k_mailchimp_integration_metabox',
 			__( 'Mailchimp Settings', 'cf7-kraken' ),
-			[ $this, 'mailchimp_integration_metabox_cb'],
+			[ $this, 'mailchimp_integration_metabox_cb' ],
 			'cf7k_integrations',
 			'normal',
 			'high'
@@ -171,7 +171,7 @@ class CF7_Kraken_Mailchimp_Module {
 			}
 
 			$post_data = [
-				'email_address' => $field_mapping[ 'email_address' ],
+				'email_address' => $field_mapping['email_address'],
 				'status' => $double_optin ? 'pending' : 'subscribed',
 			];
 
@@ -184,7 +184,7 @@ class CF7_Kraken_Mailchimp_Module {
 			}
 
 			$response = $handler->put(
-				'lists/' . $audience . '/members/' . md5( strtolower( $field_mapping[ 'email_address' ] ) ),
+				'lists/' . $audience . '/members/' . md5( strtolower( $field_mapping['email_address'] ) ),
 				$post_data
 			);
 
@@ -204,7 +204,7 @@ class CF7_Kraken_Mailchimp_Module {
 	 *
 	 * @param array $field_mapping Fields Mapping.
 	 * @param array $form_fields Form Fields.
-	 * @return void
+	 * @return array
 	 */
 	protected function map_fields( $field_mapping, $form_fields ) {
 		$mapping = [];

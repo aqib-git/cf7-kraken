@@ -68,36 +68,11 @@ if ( ! class_exists( 'CF7_kraken_Admin' ) ) {
 		 * @return void
 		 */
 		private function add_admin_hooks() {
-			add_action( 'admin_menu', [ $this, 'register_admin_welcome_page' ] );
 			add_action( 'init', [ $this, 'register_integration_cpt' ] );
 			add_action( 'add_meta_boxes', [ $this, 'register_meta_boxes' ] );
 			add_action( 'admin_enqueue_scripts', [ $this, 'register_assets' ] );
 			add_action( 'save_post_cf7k_integrations', [ $this, 'save_cpt_meta_boxes' ] );
 			add_action( 'wp_ajax_cf7k_get_cf7_fields', [ $this, 'get_cf7_fields' ] );
-		}
-
-		/**
-		 * Register plugin admin page.
-		 *
-		 * @since 1.0.0
-		 * @access public
-		 *
-		 * @return void
-		 */
-		public function register_admin_welcome_page() {
-			add_menu_page(
-				__( 'CF7 Kraken', 'cf7_kraken' ),
-				__( 'CF7 Kraken', 'cf7_kraken' ),
-				'manage_options',
-				'cf7_kraken',
-				function () {
-					ob_start();
-					include_once cf7k_init()->plugin_path() . 'admin/views/welcome.php';
-					ob_end_flush();
-				},
-				'dashicons-rest-api',
-				20
-			);
 		}
 
 		/**
@@ -123,7 +98,7 @@ if ( ! class_exists( 'CF7_kraken_Admin' ) ) {
 				'search_items'       => __( 'Search Integrations', 'cf7_kraken' ),
 				'parent_item_colon'  => __( 'Parent Integrations:', 'cf7_kraken' ),
 				'not_found'          => __( 'No integrations found.', 'cf7_kraken' ),
-				'not_found_in_trash' => __( 'No integrations found in Trash.', 'cf7_kraken' )
+				'not_found_in_trash' => __( 'No integrations found in Trash.', 'cf7_kraken' ),
 			);
 
 			$args = array(
@@ -139,7 +114,7 @@ if ( ! class_exists( 'CF7_kraken_Admin' ) ) {
 				'has_archive'        => true,
 				'hierarchical'       => false,
 				'menu_position'      => null,
-				'supports'           => array( 'title' )
+				'supports'           => array( 'title' ),
 			);
 
 			register_post_type( 'cf7k_integrations', $args );
@@ -209,17 +184,17 @@ if ( ! class_exists( 'CF7_kraken_Admin' ) ) {
 		 * @return mixed
 		 */
 		public function get_cf7_fields() {
-			if ( empty( $_POST['id'] ) ) {
+			if ( empty( $_POST['id'] ) ) { // phpcs:ignore WordPress.Security
 				wp_send_json_error( __( 'id field is missing', 'cf7-kraken' ) );
 			}
 
-			$id = filter_var( $_POST['id'], FILTER_VALIDATE_INT );
+			$id = filter_var( wp_unslash( $_POST['id'] ), FILTER_VALIDATE_INT ); // phpcs:ignore WordPress.Security
 
 			$fields = WPCF7_ContactForm::get_instance( $id )
 				->scan_form_tags();
 
 			$fields = array_filter( $fields, function ( $field ) {
-				return $field['type'] !== 'file' && $field['type'] != 'submit';
+				return 'file' !== $field['type'] && 'submit' !== $field['type'];
 			} );
 
 			wp_send_json_success( $fields );
@@ -244,7 +219,8 @@ if ( ! class_exists( 'CF7_kraken_Admin' ) ) {
 				'cf7-select2-script',
 				'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js',
 				[ 'jquery' ],
-				$plugin->plugin_version()
+				$plugin->plugin_version(),
+				true
 			);
 
 			wp_enqueue_style(

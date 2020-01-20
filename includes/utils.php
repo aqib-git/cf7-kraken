@@ -63,7 +63,7 @@ class CF7K_Utils {
 			return [];
 		}
 
-		$fields = WPCF7_ContactForm::get_instance( $response['_wpcf7']  )
+		$fields = WPCF7_ContactForm::get_instance( $response['_wpcf7'] )
 			->scan_form_tags();
 
 		$field_types = self::get_cf7_field_types();
@@ -76,7 +76,7 @@ class CF7K_Utils {
 					continue;
 				}
 
-				if( ! in_array( $field->basetype, $field_types, true ) ) {
+				if ( ! in_array( $field->basetype, $field_types, true ) ) {
 					continue;
 				}
 
@@ -100,7 +100,7 @@ class CF7K_Utils {
 	 * @access public
 	 * @static
 	 *
-	 * @return void
+	 * @return array
 	 */
 	public static function get_cf7_field_types() {
 		return [

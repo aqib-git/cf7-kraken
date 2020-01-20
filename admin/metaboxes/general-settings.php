@@ -89,7 +89,7 @@ class CF7_Kraken_General_Settings_Metabox {
 					<tr>
 						<th>Select Contact Form</th>
 						<td>
-							<?php if ( count( $contact_forms ) > 0 ): ?>
+							<?php if ( count( $contact_forms ) > 0 ) : ?>
 								<select name="cf7_id">
 									<?php foreach ( $contact_forms as $contact_form ) : ?>
 										<option value="<?php echo esc_attr( $contact_form->ID ); ?>" <?php echo esc_attr( selected( $cf7_id, $contact_form->ID, false ) ); ?>> <?php echo esc_html( $contact_form->post_title ); ?></option>

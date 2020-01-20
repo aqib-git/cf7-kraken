@@ -165,6 +165,7 @@ class CF7_Kraken_Slack_Module {
 			$attachment = array_merge(
 				$attachment,
 				[
+					/* translators: Powered by brand name. */
 					'footer' => sprintf( __( 'Powered by %s', 'cf7-kraken' ), 'CF7 Kraken' ),
 					'footer_icon' => '',
 				]

@@ -59,19 +59,19 @@ $slack = empty( $slack ) ? [] : $slack;
 			<tr>
 				<th><?php esc_html_e( 'Send Form Data', 'cf7-kraken' ); ?></th>
 				<td>
-					<input type="checkbox" value="yes" name="slack[send_form_data]" <?php checked( ! empty( $slack['send_form_data'] ), true )?>>
+					<input type="checkbox" value="yes" name="slack[send_form_data]" <?php checked( ! empty( $slack['send_form_data'] ), true ); ?>>
 				</td>
 			</tr>
 			<tr>
 				<th><?php esc_html_e( 'Timestamp', 'cf7-kraken' ); ?></th>
 				<td>
-					<input type="checkbox" value="yes" name="slack[show_timestamp]" <?php checked( ! empty( $slack['show_timestamp'] ), true )?>>
+					<input type="checkbox" value="yes" name="slack[show_timestamp]" <?php checked( ! empty( $slack['show_timestamp'] ), true ); ?>>
 				</td>
 			</tr>
 			<tr>
 				<th><?php esc_html_e( 'Footer', 'cf7-kraken' ); ?></th>
 				<td>
-					<input type="checkbox" value="yes" name="slack[show_footer]" <?php checked( ! empty( $slack['show_footer'] ), true )?>>
+					<input type="checkbox" value="yes" name="slack[show_footer]" <?php checked( ! empty( $slack['show_footer'] ), true ); ?>>
 				</td>
 			</tr>
 			<tr>

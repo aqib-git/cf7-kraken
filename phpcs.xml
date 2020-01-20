@@ -1,12 +1,15 @@
 <?xml version="1.0"?>
-<ruleset name="Gutenpack">
-	<description>Gutenpack PHPCS Ruleset</description>
+<ruleset name="CF7K">
+	<description>CF7K PHPCS Ruleset</description>
+
+	<config name="installed_paths" value="wpcs" />
 
 	<exclude-pattern>vendor/</exclude-pattern>
 	<exclude-pattern>build/</exclude-pattern>
 	<exclude-pattern>node_modules/</exclude-pattern>
 	<exclude-pattern>wpcs/</exclude-pattern>
 	<exclude-pattern>index.php</exclude-pattern>
+	<exclude-pattern>includes/modules/mailchimp/classes/mailchimp-api.php</exclude-pattern>
 
 	<rule ref="WordPress">
 		<exclude name="PEAR.NamingConventions.ValidClassName.StartWithCapital"/>
@@ -18,5 +21,6 @@
 		<exclude name="WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned" />
 		<exclude name="PSR2.Methods.MethodDeclaration.Underscore" />
 		<exclude name="Generic.WhiteSpace.ScopeIndent.IncorrectExact" />
+		<exclude name="Generic.Arrays.DisallowShortArraySyntax.Found" />
 	</rule>
 </ruleset>
