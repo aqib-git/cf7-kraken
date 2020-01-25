@@ -87,7 +87,7 @@ if ( ! class_exists( 'CF7_kraken_Admin' ) ) {
 			$labels = array(
 				'name'               => _x( 'Integrations', 'post type general name', 'cf7_kraken' ),
 				'singular_name'      => _x( 'Integration', 'post type singular name', 'cf7_kraken' ),
-				'menu_name'          => _x( 'Integrations', 'admin menu', 'cf7_kraken' ),
+				'menu_name'          => _x( 'CF7 Kraken', 'admin menu', 'cf7_kraken' ),
 				'name_admin_bar'     => _x( 'Integration', 'add new on admin bar', 'cf7_kraken' ),
 				'add_new'            => _x( 'Add New', 'integration', 'cf7_kraken' ),
 				'add_new_item'       => __( 'Add New Integration', 'cf7_kraken' ),
@@ -107,7 +107,8 @@ if ( ! class_exists( 'CF7_kraken_Admin' ) ) {
 				'public'             => true,
 				'publicly_queryable' => true,
 				'show_ui'            => true,
-				'show_in_menu'       => 'cf7_kraken',
+				'show_in_menu'       => true,
+				'menu_icon'          => 'dashicons-rest-api',
 				'query_var'          => true,
 				'rewrite'            => array( 'slug' => 'cf7_kraken_integrations' ),
 				'capability_type'    => 'post',

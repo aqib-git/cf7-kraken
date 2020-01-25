@@ -2,10 +2,10 @@
 /**
  * Plugin Name: Contact Form 7 Kraken
  * Plugin URI:  http://codecrud.com/contact-form-7-kraken
- * Description: Integrate your Contact Form 7 with Slack and more are comming...
+ * Description: Integrate your Contact Form 7 with Mailchimp, Slack and more are comming...
  * Version:     1.0.0
- * Author:      CodeCrud
- * Author URI:  https://codecrud.com/
+ * Author:      Asyncular
+ * Author URI:  https://asyncular.com/
  * Text Domain: cf7-kraken
  * License:     GPL-2.0+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
