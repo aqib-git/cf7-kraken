@@ -12,6 +12,7 @@ import del from 'del';
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
 import babelify from 'babelify';
+import wpPot from 'gulp-wp-pot';
 
 /**
  * Automatically load and store all gulp plugins.
@@ -64,10 +65,32 @@ export const scripts = () => {
 };
 
 /**
+ * Generate POT file.
+ */
+export const generatePot = () => {
+  const php = [
+    '*.php',
+    'includes/**/*.php',
+    'admin/**/*.php',
+  ];
+
+  return gulp.src(php)
+    .pipe(wpPot({
+      domain: 'cf7-kraken',
+      destFile: 'cf7-kraken.pot',
+      package: 'CF7Kraken',
+      lastTranslator: 'Asyncular Team <hello@asyncular.com>',
+      team: 'Asyncular <hello@asyncular.com>'
+    }))
+    .pipe(gulp.dest('includes/languages/cf7-kraken.pot'));
+};
+
+
+/**
  * Task to build the project assets.
  */
 export const build = ( done ) => {
-  return gulp.series( 'clean', [ 'styles', 'scripts' ] )( done );
+  return gulp.series( 'clean', [ 'styles', 'scripts', 'generatePot' ] )( done );
 };
 
 /**
