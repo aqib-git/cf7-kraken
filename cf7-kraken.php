@@ -1,7 +1,7 @@
 <?php
 /**
- * Plugin Name: Contact Form 7 Kraken
- * Plugin URI:  http://codecrud.com/contact-form-7-kraken
+ * Plugin Name: CF7 Kraken
+ * Plugin URI:  https://cf7k.asyncular.com
  * Description: Integrate your Contact Form 7 with Mailchimp, Slack and more are comming...
  * Version:     1.0.0
  * Author:      Asyncular
@@ -12,9 +12,9 @@
  * Domain Path: /includes/languages
  *
  * @package cf7_kraken
- * @author  CodeCrud
+ * @author  Asyncular
  * @license GPL-2.0+
- * @copyright  2019, CodeCrud
+ * @copyright  2020, Asyncular
  */
 
 // If this file is called directly, abort.
