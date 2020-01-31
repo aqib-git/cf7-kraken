@@ -33,11 +33,11 @@ class CF7_Kraken_Mailchimp_Helper {
 			'modules/mailchimp/classes/mailchimp-api',
 		] );
 
-		$api_key = filter_input( INPUT_POST, 'api_key' );
-
-		if ( empty( $api_key ) ) {
+		if ( empty( $_POST['api_key'] ) ) {
 			wp_send_json_error( 'api_key field is empty' );
 		}
+
+		$api_key = sanitize_text_field( wp_unslash( $_POST['api_key'] ) );
 
 		try {
 			$handler = new CF7_Kraken_MailChimp_API( $api_key );
@@ -74,16 +74,16 @@ class CF7_Kraken_Mailchimp_Helper {
 			'modules/mailchimp/classes/mailchimp-api',
 		] );
 
-		$api_key = filter_input( INPUT_POST, 'api_key' );
-		$list_id = filter_input( INPUT_POST, 'list_id' );
-
-		if ( empty( $api_key ) ) {
+		if ( empty( $_POST['api_key'] ) ) {
 			wp_send_json_error( 'api_key field is empty' );
 		}
 
-		if ( empty( $list_id ) ) {
+		if ( empty( $_POST['list_id'] ) ) {
 			wp_send_json_error( 'list_id field is empty' );
 		}
+
+		$api_key = sanitize_text_field( wp_unslash( $_POST['api_key'] ) );
+		$list_id = sanitize_text_field( wp_unslash( $_POST['list_id'] ) );
 
 		try {
 			$handler = new CF7_Kraken_MailChimp_API( $api_key );
@@ -129,16 +129,16 @@ class CF7_Kraken_Mailchimp_Helper {
 			'modules/mailchimp/classes/mailchimp-api',
 		] );
 
-		$api_key = filter_input( INPUT_POST, 'api_key' );
-		$list_id = filter_input( INPUT_POST, 'list_id' );
-
-		if ( empty( $api_key ) ) {
+		if ( empty( $_POST['api_key'] ) ) {
 			wp_send_json_error( 'api_key field is empty' );
 		}
 
-		if ( empty( $list_id ) ) {
+		if ( empty( $_POST['list_id'] ) ) {
 			wp_send_json_error( 'list_id field is empty' );
 		}
+
+		$api_key = sanitize_text_field( wp_unslash( $_POST['api_key'] ) );
+		$list_id = sanitize_text_field( wp_unslash( $_POST['list_id'] ) );
 
 		$handler = new CF7_Kraken_MailChimp_API( $api_key );
 
