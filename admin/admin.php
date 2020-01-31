@@ -212,13 +212,14 @@ if ( ! class_exists( 'CF7_kraken_Admin' ) ) {
 
 			wp_enqueue_style(
 				'cf7k-select2-styles',
-				'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css',
+				$plugin->plugin_assets_url( 'lib/select2/select2' . CF7K_MIN_CSS . '.css' ),
 				[],
 				$plugin->plugin_version()
 			);
+
 			wp_enqueue_script(
 				'cf7k-select2-script',
-				'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js',
+				$plugin->plugin_assets_url( 'lib/select2/select2' . CF7K_MIN_JS . '.js' ),
 				[ 'jquery' ],
 				$plugin->plugin_version(),
 				true

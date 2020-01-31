@@ -94,12 +94,16 @@
     setData() {
       this.data = {
         i18n: window.cf7k_admin,
-        apiKey: this.el.$apiKey.val().trim() || '',
+        apiKey: '',
         formFields: [],
         mergeFields: [],
         fieldMapping: [],
         mergeFieldsLoaded: false,
         formFieldsLoaded: false
+      }
+
+      if (this.el.$apiKey.length > 0) {
+        this.data.apiKey = this.el.$apiKey.val().trim()
       }
     }
 
