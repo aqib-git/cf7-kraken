@@ -25,17 +25,19 @@ class CF7_Kraken_Mailchimp_Helper {
 	 * @return mixed
 	 */
 	public static function get_audience() {
+		check_ajax_referer( 'mailchimp_get_audience' );
+
 		$plugin = cf7k_init();
 
 		$plugin->load_files( [
 			'modules/mailchimp/classes/mailchimp-api',
 		] );
 
-		if ( empty( $_POST['api_key'] ) ) { // phpcs:ignore WordPress.Security
+		$api_key = filter_input( INPUT_POST, 'api_key' );
+
+		if ( empty( $api_key ) ) {
 			wp_send_json_error( 'api_key field is empty' );
 		}
-
-		$api_key = wp_unslash( $_POST['api_key'] ); // phpcs:ignore WordPress.Security
 
 		try {
 			$handler = new CF7_Kraken_MailChimp_API( $api_key );
@@ -64,22 +66,24 @@ class CF7_Kraken_Mailchimp_Helper {
 	 * @return mixed
 	 */
 	public static function get_audience_groups() {
+		check_ajax_referer( 'mailchimp_get_audience_groups' );
+
 		$plugin = cf7k_init();
 
 		$plugin->load_files( [
 			'modules/mailchimp/classes/mailchimp-api',
 		] );
 
-		if ( empty( $_POST['api_key'] ) ) { // phpcs:ignore WordPress.Security
+		$api_key = filter_input( INPUT_POST, 'api_key' );
+		$list_id = filter_input( INPUT_POST, 'list_id' );
+
+		if ( empty( $api_key ) ) {
 			wp_send_json_error( 'api_key field is empty' );
 		}
 
-		if ( empty( $_POST['list_id'] ) ) { // phpcs:ignore WordPress.Security
+		if ( empty( $list_id ) ) {
 			wp_send_json_error( 'list_id field is empty' );
 		}
-
-		$api_key = wp_unslash( $_POST['api_key'] ); // phpcs:ignore WordPress.Security
-		$list_id = wp_unslash( $_POST['list_id'] ); // phpcs:ignore WordPress.Security
 
 		try {
 			$handler = new CF7_Kraken_MailChimp_API( $api_key );
@@ -117,22 +121,25 @@ class CF7_Kraken_Mailchimp_Helper {
 	 * @return mixed
 	 */
 	public static function get_audience_fields() {
+		check_ajax_referer( 'mailchimp_get_audience_fields' );
+
 		$plugin = cf7k_init();
 
 		$plugin->load_files( [
 			'modules/mailchimp/classes/mailchimp-api',
 		] );
 
-		if ( empty( $_POST['api_key'] ) ) { // phpcs:ignore WordPress.Security
+		$api_key = filter_input( INPUT_POST, 'api_key' );
+		$list_id = filter_input( INPUT_POST, 'list_id' );
+
+		if ( empty( $api_key ) ) {
 			wp_send_json_error( 'api_key field is empty' );
 		}
 
-		if ( empty( $_POST['list_id'] ) ) { // phpcs:ignore WordPress.Security
+		if ( empty( $list_id ) ) {
 			wp_send_json_error( 'list_id field is empty' );
 		}
 
-		$api_key = $_POST['api_key']; // phpcs:ignore WordPress.Security
-		$list_id = $_POST['list_id']; // phpcs:ignore WordPress.Security
 		$handler = new CF7_Kraken_MailChimp_API( $api_key );
 
 		$merge_fields = $handler->get( 'lists/' . $list_id . '/merge-fields?count=999' );

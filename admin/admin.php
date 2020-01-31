@@ -211,13 +211,13 @@ if ( ! class_exists( 'CF7_kraken_Admin' ) ) {
 			$plugin = cf7k_init();
 
 			wp_enqueue_style(
-				'cf7-select2-styles',
+				'cf7k-select2-styles',
 				'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css',
 				[],
 				$plugin->plugin_version()
 			);
 			wp_enqueue_script(
-				'cf7-select2-script',
+				'cf7k-select2-script',
 				'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js',
 				[ 'jquery' ],
 				$plugin->plugin_version(),
@@ -225,7 +225,7 @@ if ( ! class_exists( 'CF7_kraken_Admin' ) ) {
 			);
 
 			wp_enqueue_style(
-				'cf7-admin-styles',
+				'cf7k-admin-styles',
 				$plugin->plugin_assets_url( 'css/admin' . CF7K_MIN_CSS . '.css' ),
 				[],
 				$plugin->plugin_version()
@@ -234,11 +234,23 @@ if ( ! class_exists( 'CF7_kraken_Admin' ) ) {
 			wp_enqueue_style( 'wp-color-picker' );
 
 			wp_enqueue_script(
-				'cf7-admin-script',
+				'cf7k-admin-script',
 				$plugin->plugin_assets_url( 'js/admin' . CF7K_MIN_JS . '.js' ),
-				[ 'jquery', 'wp-color-picker', 'cf7-select2-script', 'wp-util' ],
+				[ 'jquery', 'wp-color-picker', 'cf7k-select2-script', 'wp-util' ],
 				$plugin->plugin_version(),
 				true
+			);
+
+			wp_localize_script(
+				'cf7k-admin-script',
+				'cf7k_admin',
+				[
+					'mailchimp' => [
+						'get_audience_nonce' => wp_create_nonce( 'mailchimp_get_audience' ),
+						'get_audience_groups_nonce' => wp_create_nonce( 'mailchimp_get_audience_groups' ),
+						'get_audience_fields_nonce' => wp_create_nonce( 'mailchimp_get_audience_fields' ),
+					],
+				]
 			);
 		}
 

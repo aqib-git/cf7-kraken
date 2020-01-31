@@ -93,6 +93,7 @@
 
     setData() {
       this.data = {
+        i18n: window.cf7k_admin,
         apiKey: this.el.$apiKey.val().trim() || '',
         formFields: [],
         mergeFields: [],
@@ -195,7 +196,8 @@
       this.el.$audience.siblings('i').removeClass('hidden')
 
       window.wp.ajax.post('cf7k_mailchimp_get_audience', {
-        api_key: this.data.apiKey
+        api_key: this.data.apiKey,
+        _ajax_nonce: this.data.i18n.mailchimp.get_audience_nonce
       })
         .done((response) => {
           this.insertAudience(response.lists)
@@ -212,7 +214,8 @@
 
       window.wp.ajax.post('cf7k_mailchimp_get_audience_groups', {
         api_key: this.data.apiKey,
-        list_id: this.el.$audience.val()
+        list_id: this.el.$audience.val(),
+        _ajax_nonce: this.data.i18n.mailchimp.get_audience_groups_nonce
       }).done((response) => {
         this.insertAudienceGroups(response)
       })
@@ -221,7 +224,8 @@
     getAudienceFields() {
       window.wp.ajax.post('cf7k_mailchimp_get_audience_fields', {
         api_key: this.data.apiKey,
-        list_id: this.el.$audience.val()
+        list_id: this.el.$audience.val(),
+        _ajax_nonce: this.data.i18n.mailchimp.get_audience_fields_nonce
       }).done((response) => {
         this.data.mergeFieldsLoaded = true
         this.data.mergeFields = response || []
