@@ -73,6 +73,9 @@ if ( ! class_exists( 'CF7_kraken_Admin' ) ) {
 			add_action( 'admin_enqueue_scripts', [ $this, 'register_assets' ] );
 			add_action( 'save_post_cf7k_integrations', [ $this, 'save_cpt_meta_boxes' ] );
 			add_action( 'wp_ajax_cf7k_get_cf7_fields', [ $this, 'get_cf7_fields' ] );
+			add_action( 'manage_cf7k_integrations_posts_custom_column', [ $this, 'manage_cf7k_integrations_columns' ], 10, 2 );
+
+			add_filter( 'manage_edit-cf7k_integrations_columns', [ $this, 'edit_cf7k_integrations_columns' ] ) ;
 		}
 
 		/**
@@ -199,6 +202,63 @@ if ( ! class_exists( 'CF7_kraken_Admin' ) ) {
 			} );
 
 			wp_send_json_success( $fields );
+		}
+
+		/**
+		 * Insert Form Column.
+		 *
+		 * @since NEXT
+		 * @access public
+		 *
+		 * @param array $columns Table columns.
+		 * @return array
+		 */
+		public function edit_cf7k_integrations_columns( $columns ) {
+			$new_columns = [];
+			$index       = 0;
+
+			foreach( $columns as $key => $value ) {
+				if ( 2 === $index ) {
+					$new_columns['cf7k_form'] = __( 'Form', 'cf7-kraken' );
+				}
+
+				$new_columns[$key] = $value;
+
+				$index++;
+			}
+
+			return $new_columns;
+		}
+
+		/**
+		 * Insert CF7 title in Form Column.
+		 *
+		 * @since NEXT
+		 * @access public
+		 *
+		 * @param string $column
+		 * @return void
+		 */
+		public function manage_cf7k_integrations_columns( $column ) {
+			global $post;
+
+			if ( 'cf7k_form' !== $column ) {
+				return;
+			}
+
+			$cf7_id = get_post_meta( $post->ID, 'cf7_id', true );
+
+			if ( empty( $cf7_id ) ) {
+				return;
+			}
+
+			$post = get_post( $cf7_id );
+
+			if ( empty( $post ) ) {
+				return;
+			}
+
+			echo esc_html( $post->post_title );
 		}
 
 		/**
