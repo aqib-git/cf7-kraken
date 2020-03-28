@@ -14,7 +14,10 @@ $mailchimp = empty( $mailchimp ) ? [] : $mailchimp;
 	<table>
 		<tbody>
 			<tr>
-				<th><?php esc_html_e( 'API Key', 'cf7-kraken' ); ?></th>
+				<th>
+					<?php esc_html_e( 'API Key', 'cf7-kraken' ); ?>
+					<span class="cf7k-red-text">(<?php esc_html_e( 'Required', 'cf7-kraken' ); ?>)</span>
+				</th>
 				<td>
 					<input type="text" class="large-text code" name="mailchimp[api_key]" value="<?php echo empty( $mailchimp['api_key'] ) ? '' : esc_attr( $mailchimp['api_key'] ); ?>">
 					<div>
@@ -30,7 +33,10 @@ $mailchimp = empty( $mailchimp ) ? [] : $mailchimp;
 				</td>
 			</tr>
 			<tr class="cf7k-cpt-metabox-mailchimp-audience-row hidden">
-				<th><?php esc_html_e( 'Audience', 'cf7-kraken' ); ?></th>
+				<th>
+					<?php esc_html_e( 'Audience', 'cf7-kraken' ); ?>
+					<span class="cf7k-red-text">(<?php esc_html_e( 'Required', 'cf7-kraken' ); ?>)</span>
+				</th>
 				<td>
 					<div class="cf7k-cpt-metabox-mailchimp-audience">
 						<select name="mailchimp[audience]" data-value="<?php echo esc_attr( $mailchimp['audience'] ); ?>">
@@ -58,7 +64,10 @@ $mailchimp = empty( $mailchimp ) ? [] : $mailchimp;
 			</tr>
 			</tr>
 			<tr class="cf7k-cpt-metabox-mailchimp-field-mapping-row hidden">
-				<th><?php esc_html_e( 'Field Mapping', 'cf7-kraken' ); ?></th>
+				<th>
+					<?php esc_html_e( 'Field Mapping', 'cf7-kraken' ); ?>
+					<span class="cf7k-red-text">(<?php esc_html_e( 'Required', 'cf7-kraken' ); ?>)</span>
+				</th>
 				<td>
 					<i class="cf7k-spin dashicons dashicons-update-alt"></i>
 					<div class="cf7k-cpt-metabox-mailchimp-field-mapping-header hidden">
@@ -70,6 +79,10 @@ $mailchimp = empty( $mailchimp ) ? [] : $mailchimp;
 						<button type="button" class="button button-primary button-large">Add</button>
 					</div>
 					<input type="hidden" name="mailchimp[field_mapping]" value="<?php echo esc_attr( $mailchimp['field_mapping'] ); ?>">
+					<div class="cf7k-alert cf7k-metabox-errors hidden">
+						<ul>
+						</ul>
+					</div>
 				</td>
 			</tr>
 		</tbody>

@@ -310,6 +310,7 @@ if ( ! class_exists( 'CF7_kraken_Admin' ) ) {
 						'get_audience_nonce' => wp_create_nonce( 'mailchimp_get_audience' ),
 						'get_audience_groups_nonce' => wp_create_nonce( 'mailchimp_get_audience_groups' ),
 						'get_audience_fields_nonce' => wp_create_nonce( 'mailchimp_get_audience_fields' ),
+						'email_field_mapping' => __( 'Field mapping for Email is required.', 'cf7-kraken' ),
 					],
 				]
 			);

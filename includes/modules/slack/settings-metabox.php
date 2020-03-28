@@ -14,7 +14,10 @@ $slack = empty( $slack ) ? [] : $slack;
 	<table>
 		<tbody>
 			<tr>
-				<th><?php esc_html_e( 'Webhook URL', 'cf7-kraken' ); ?></th>
+				<th>
+					<?php esc_html_e( 'Webhook URL', 'cf7-kraken' ); ?>
+					<span class="cf7k-red-text">(<?php esc_html_e( 'Required', 'cf7-kraken' ); ?>)</span>
+				</th>
 				<td>
 					<input type="text" class="large-text code" name="slack[webhook_url]" value="<?php echo empty( $slack['webhook_url'] ) ? '' : esc_url( $slack['webhook_url'] ); ?>">
 					<div><small><i><?php esc_html_e( 'Enter the Slack webhook URL for Slack notifications', 'cf7-kraken' ); ?> <a href="https://slack.com/apps/A0F7XDUAZ-incoming-webhooks/" target="blank"><?php esc_html_e( 'More Info.', 'cf7-kraken' ); ?></a></i></small></div>
