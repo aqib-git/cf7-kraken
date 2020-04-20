@@ -11,6 +11,10 @@ class CF7_Kraken_Admin {
     import('./metaboxes/mailchimp').then(module => {
       new module.default(jQuery)
     })
+
+    import('./metaboxes/webhook').then(module => {
+      new module.default(jQuery)
+    })
   }
 }
 

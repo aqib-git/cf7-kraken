@@ -1,4 +1,4 @@
-#cf7k_mailchimp_integration_metabox {
+#cf7k_webhook_integration_metabox {
 	display: none;
 
 	.hndle, .toggle-indicator {
@@ -14,16 +14,7 @@
 		animation:  #{$prefix}-spin 2s linear infinite;
 	}
 
-	.cf7k-cpt-metabox-mailchimp {
-		&-audience, &-groups {
-			display: flex;
-			align-items: center;
-
-			i {
-				margin-left: 5px;
-			}
-		}
-
+	.cf7k-cpt-metabox-webhook {
 		&-field-mapping {
 			overflow: hidden;
 		}

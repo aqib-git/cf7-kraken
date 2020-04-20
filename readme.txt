@@ -1,7 +1,7 @@
 === CF7 Kraken ===
 Contributors: aqi64u
-Author URI: https://asyncular.com
-Plugin URL: https://cf7k.asyncular.com
+Author URI: https://codecrud.com
+Plugin URL: https://cf7-kraken.codecrud.com
 Tags: presets, contact, form, contact form 7, integration, slack, mailchimp, data, share
 Requires at least: 4.7
 Tested up to: 5.3.2

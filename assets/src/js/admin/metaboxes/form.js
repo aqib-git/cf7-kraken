@@ -1,4 +1,4 @@
-import Base_Metabox from './base'
+import Base_Metabox from './base';
 
 export default class Form_Metabox extends Base_Metabox {
   constructor ($) {
@@ -6,7 +6,7 @@ export default class Form_Metabox extends Base_Metabox {
 
     this.$cf7Id = this.$('select[name="cf7_id"]');
     this.$metabox = this.$('.cf7k-cpt-metabox');
-    this.integrations = ['slack', 'mailchimp'];
+    this.integrations = ['slack', 'mailchimp', 'webhook'];
 
     this.initIntegrations();
 
@@ -27,6 +27,15 @@ export default class Form_Metabox extends Base_Metabox {
 
       self.integrationsVisibility(selectedIntegrations);
     });
+
+    this.$('.js-cf7k-integrations').on('select2:select', function (e) {
+      var data = e.params.data;
+
+      setTimeout(() => {
+        document.getElementById('cf7k_' + data.id + '_integration_metabox')
+          .scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+      }, 500);
+    });
   }
 
   initIntegrations () {
@@ -35,33 +44,6 @@ export default class Form_Metabox extends Base_Metabox {
 
     $integrations.select2({
       placeholder: 'Select Integration'
-    });
-
-    $integrations.on("select2:select", function (evt) {
-      var element = evt.params.data.element;
-      var $element = self.$(element);
-
-      window.setTimeout(function () {
-      if ($integrations.find(":selected").length > 1) {
-        var $second = $integrations.find(":selected").eq(-2);
-
-        $element.detach();
-        $second.after($element);
-      } else {
-        $element.detach();
-        $integrations.prepend($element);
-      }
-
-      $integrations.trigger("change");
-      }, 1);
-    });
-
-    $integrations.on("select2:unselect", function (evt) {
-      if ($integrations.find(":selected").length) {
-        var element = evt.params.data.element;
-        var $element = self.$(element);
-        $integrations.find(":selected").after($element);
-      }
     });
 
     if (this.$cf7Id.length > 0) {
