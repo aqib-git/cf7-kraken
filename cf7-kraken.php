@@ -423,11 +423,15 @@ if ( ! class_exists( 'CF7_Kraken' ) ) {
 			$posts = get_posts( [
 				'post_type'  => 'cf7k_integrations',
 				'numberpost' => -1,
-				'meta_key'   => 'cf7_id', // phpcs:ignore WordPress.DB.SlowDBQuery
-				'meta_value' => $response['_wpcf7'], // phpcs:ignore WordPress.DB.SlowDBQuery
 			] );
 
 			foreach ( $posts as $post ) {
+				$cf7_id = get_post_meta( $post->ID, 'cf7_id', true );
+
+				if ( $cf7_id !== $response['_wpcf7'] ) {
+					continue;
+				}
+
 				$integrations = get_post_meta( $post->ID, 'integrations', true );
 				$modules      = [];
 
@@ -440,9 +444,7 @@ if ( ! class_exists( 'CF7_Kraken' ) ) {
 				$data = cf7k_utils()::get_cf7_data( $response );
 
 				foreach ( $modules as $module ) {
-					if ( ! $module->handler( $post->ID, $data ) ) {
-						break;
-					}
+					$module->handler( $post->ID, $data );
 				}
 			}
 

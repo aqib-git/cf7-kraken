@@ -112,7 +112,7 @@ class CF7_Kraken_Webhook_Module {
 		$settings = get_post_meta( $post_id, 'webhook', true );
 
 		if ( empty( $settings['webhook_url'] ) ) {
-			return;
+			return false;
 		}
 
 		if ( ! empty( $settings['field_mapping'] ) ) {

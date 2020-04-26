@@ -111,7 +111,7 @@ class CF7_Kraken_Slack_Module {
 			empty( $settings['webhook_url'] ) ||
 			false === strpos( $settings['webhook_url'], 'https://hooks.slack.com/services/' )
 		) {
-			return;
+			return false;
 		}
 
 		$payload = [
