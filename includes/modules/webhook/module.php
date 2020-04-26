@@ -115,13 +115,13 @@ class CF7_Kraken_Webhook_Module {
 			return;
 		}
 
-		if ( empty( $settings['field_mapping'] ) ) {
-			return;
-		}
+		if ( ! empty( $settings['field_mapping'] ) ) {
+			$field_mapping = json_decode( $settings['field_mapping'], true );
 
-		$field_mapping = json_decode( $settings['field_mapping'], true );
+			if ( ! is_array( $field_mapping ) ) {
+				$field_mapping = [];
+			}
 
-		if ( ! empty( $field_mapping ) ) {
 			$form_fields = $this->map_fields( $field_mapping, $form_fields );
 		}
 

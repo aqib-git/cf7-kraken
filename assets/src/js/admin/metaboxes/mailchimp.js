@@ -379,6 +379,8 @@ export default class Mailchimp_Metabox extends Base_Metabox {
         .find(`.${prefix}-form-field select`)
         .val(fieldMap.form_field)
     }
+
+    this.validateFieldMapping()
   }
 
   validateFieldMapping() {

@@ -39,7 +39,7 @@ $mailchimp = empty( $mailchimp ) ? [] : $mailchimp;
 				</th>
 				<td>
 					<div class="cf7k-cpt-metabox-mailchimp-audience">
-						<select name="mailchimp[audience]" data-value="<?php echo esc_attr( $mailchimp['audience'] ); ?>">
+						<select name="mailchimp[audience]" data-value="<?php echo empty( $mailchimp['audience'] ) ? '' : esc_attr( $mailchimp['audience'] ); ?>">
 							<option value="">- None -</option>
 						</select>
 						<i class="cf7k-spin dashicons dashicons-update-alt"></i>
@@ -78,7 +78,7 @@ $mailchimp = empty( $mailchimp ) ? [] : $mailchimp;
 					<div class="cf7k-cpt-metabox-mailchimp-field-mapping-add hidden">
 						<button type="button" class="button button-primary button-large">Add</button>
 					</div>
-					<input type="hidden" name="mailchimp[field_mapping]" value="<?php echo esc_attr( $mailchimp['field_mapping'] ); ?>">
+					<input type="hidden" name="mailchimp[field_mapping]" value="<?php echo empty( $mailchimp['field_mapping'] ) ? '' : esc_attr( $mailchimp['field_mapping'] ); ?>">
 					<div class="cf7k-alert cf7k-metabox-errors hidden">
 						<ul>
 						</ul>

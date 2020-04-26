@@ -37,7 +37,7 @@ $webhook = empty( $webhook ) ? [] : $webhook;
 					<div class="cf7k-cpt-metabox-webhook-field-mapping-add hidden">
 						<button type="button" class="button button-primary button-large">Add</button>
 					</div>
-					<input type="hidden" name="webhook[field_mapping]" value="<?php echo esc_attr( $webhook['field_mapping'] ); ?>">
+					<input type="hidden" name="webhook[field_mapping]" value="<?php echo empty( $webhook['field_mapping'] ) ? '' : esc_attr( $webhook['field_mapping'] ); ?>">
 				</td>
 			</tr>
 		</tbody>
