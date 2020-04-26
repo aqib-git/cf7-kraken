@@ -26,7 +26,6 @@ $webhook = empty( $webhook ) ? [] : $webhook;
 			<tr class="cf7k-cpt-metabox-webhook-field-mapping-row hidden">
 				<th>
 					<?php esc_html_e( 'Field Mapping', 'cf7-kraken' ); ?>
-					<span class="cf7k-red-text">(<?php esc_html_e( 'Required', 'cf7-kraken' ); ?>)</span>
 				</th>
 				<td>
 					<i class="cf7k-spin dashicons dashicons-update-alt"></i>

@@ -70,7 +70,6 @@ export default class Webhook_Metabox extends Base_Metabox {
       this.data.formFieldsLoaded = true
       this.data.formFields = response || []
       this.initFieldMapping()
-      console.log('here ')
       this.el.$metabox
         .find('.cf7k-cpt-metabox-webhook-field-mapping-row')
         .removeClass('hidden')
@@ -92,7 +91,7 @@ export default class Webhook_Metabox extends Base_Metabox {
   }
 
   insertFormFields(id) {
-    const prefix = `cf7k-cpt-metabox-mailchimp-field-mapping`
+    const prefix = `cf7k-cpt-metabox-webhook-field-mapping`
     let options = ''
 
     for (let field of this.data.formFields) {
@@ -143,25 +142,18 @@ export default class Webhook_Metabox extends Base_Metabox {
 
   deleteFieldMap(e) {
     let $row = this.$(e.target)
-      .closest('.cf7k-cpt-metabox-mailchimp-field-mapping-row')
+      .closest('.cf7k-cpt-metabox-webhook-field-mapping-row')
     const id = $row.data('id')
 
     this.data.fieldMapping = _.without(this.data.fieldMapping, _.findWhere(this.data.fieldMapping, {id: id}))
     $row.remove()
-
-    if (this.data.fieldMapping.length === 0) {
-      this.el.$metabox.trigger('insertError', {
-        id: 'fieldMapping',
-        text: this.data.i18n.mailchimp.email_field_mapping
-      })
-    }
 
     this.el.$fieldMapping.val(JSON.stringify(this.data.fieldMapping))
   }
 
   onFieldMapChange(e, field) {
     const id = this.$(e.target)
-      .closest('.cf7k-cpt-metabox-mailchimp-field-mapping-row')
+      .closest('.cf7k-cpt-metabox-webhook-field-mapping-row')
       .data('id')
 
     let fieldMap = _.find(this.data.fieldMapping, {id: id})
@@ -188,7 +180,7 @@ export default class Webhook_Metabox extends Base_Metabox {
       this.addFieldMap(fieldMap)
 
       this.$(`.${prefix} > div[data-id="${fieldMap.id}"]`)
-        .find(`.${prefix}-merge-field select`)
+        .find(`.${prefix}-merge-field input`)
         .val(fieldMap.merge_field)
 
       this.$(`.${prefix} > div[data-id="${fieldMap.id}"]`)

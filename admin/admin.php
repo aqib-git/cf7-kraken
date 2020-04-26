@@ -177,6 +177,10 @@ if ( ! class_exists( 'CF7_kraken_Admin' ) ) {
 			if ( isset( $data['mailchimp'] ) ) {
 				update_post_meta( $post_id, 'mailchimp', $data['mailchimp'] );
 			}
+
+			if ( isset( $data['webhook'] ) ) {
+				update_post_meta( $post_id, 'webhook', $data['webhook'] );
+			}
 		}
 
 		/**
