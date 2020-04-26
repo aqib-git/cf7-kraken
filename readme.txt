@@ -4,8 +4,8 @@ Author URI: https://codecrud.com
 Plugin URL: https://cf7-kraken.codecrud.com
 Tags: presets, contact, form, contact form 7, integration, slack, mailchimp, data, share
 Requires at least: 4.7
-Tested up to: 5.3.2
-Stable tag: 1.0.0
+Tested up to: 5.4
+Stable tag: 1.1.0
 Requires PHP: 5.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -18,7 +18,7 @@ Contact Form 7 Kraken connects your Contact Form 7 with the hundreds of tools ou
 
 = Why Choose CF7-Kraken? =
 
-If you have to integrate your Contact Form 7 with different tools like Slack, Mailchimp, Active Campaign, Webhooks etc etc then you will probably endup with installing multiple plugins and their is possibility some of them may be no longer maintained by those authors. With CF7-Kraken your integrations will always be upto data and you don't have to worry about installing multiple plugins and requesting every author for new feature requests. We have got you covered :)
+If you have to integrate your Contact Form 7 with different tools like Slack, Mailchimp, Active Campaign, Webhooks etc. then you will probably end up with installing multiple plugins and their is possibility some of them may be no longer maintained by those authors. With CF7-Kraken your integrations will always be upto date and you don't have to worry about installing multiple plugins and requesting every author for new feature requests. We have got you covered :)
 
 = How many integrations are supported by CF7-Kraken? =
 
@@ -27,7 +27,7 @@ If you have to integrate your Contact Form 7 with different tools like Slack, Ma
 * Webhooks
 * More are comming...
 
-If you think there is any important or popular integration missing then don't hesitate to create a ticket in the support. We will always here your requests.
+If you think there is any important or popular integration missing then please don't hesitate to create a ticket in the support. We will always here your requests.
 
 == Installation ==
 
