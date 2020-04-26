@@ -211,7 +211,7 @@ if ( ! class_exists( 'CF7_kraken_Admin' ) ) {
 		/**
 		 * Insert Form Column.
 		 *
-		 * @since NEXT
+		 * @since 1.1.0
 		 * @access public
 		 *
 		 * @param array $columns Table columns.
@@ -237,7 +237,7 @@ if ( ! class_exists( 'CF7_kraken_Admin' ) ) {
 		/**
 		 * Insert CF7 title in Form Column.
 		 *
-		 * @since NEXT
+		 * @since 1.1.0
 		 * @access public
 		 *
 		 * @param string $column

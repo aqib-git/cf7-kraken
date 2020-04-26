@@ -14,7 +14,20 @@ Integrate your Contact Form 7 with Mailchimp, Slack and more are comming...
 
 == Description ==
 
-Contact Form 7 Kraken is a plugin that integrates your Contact Form 7 with services of your choice.
+Contact Form 7 Kraken connects your Contact Form 7 with the hundreds of tools out there.
+
+= Why Choose CF7-Kraken? =
+
+If you have to integrate your Contact Form 7 with different tools like Slack, Mailchimp, Active Campaign, Webhooks etc etc then you will probably endup with installing multiple plugins and their is possibility some of them may be no longer maintained by those authors. With CF7-Kraken your integrations will always be upto data and you don't have to worry about installing multiple plugins and requesting every author for new feature requests. We have got you covered :)
+
+= How many integrations are supported by CF7-Kraken? =
+
+* Slack
+* Mailchimp
+* Webhooks
+* More are comming...
+
+If you think there is any important or popular integration missing then don't hesitate to create a ticket in the support. We will always here your requests.
 
 == Installation ==
 
@@ -31,3 +44,6 @@ Contact Form 7 Kraken is a plugin that integrates your Contact Form 7 with servi
 = 1.0.0 - 2020-01-28 =
 * Slack Integration
 * Mailchimp Integration
+
+= 1.1.0 - 2020-04-26 =
+* Webhooks

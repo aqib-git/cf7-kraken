@@ -3,7 +3,7 @@
  * Plugin Name: CF7 Kraken
  * Plugin URI:  https://cf7-kraken.codecrud.com
  * Description: Integrate your Contact Form 7 with Mailchimp, Slack and more are comming...
- * Version:     1.0.0
+ * Version:     1.1.0
  * Author:      CodeCrud
  * Author URI:  https://codecrud.com/
  * Text Domain: cf7-kraken

@@ -3,7 +3,7 @@
  * Template for Webhook integration metabox.
  *
  * @package cf7_kraken
- * @since NEXT
+ * @since 1.1.0
  */
 
 $webhook = get_post_meta( get_the_ID(), 'webhook', true );

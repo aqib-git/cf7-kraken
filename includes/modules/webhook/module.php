@@ -3,7 +3,7 @@
  * Adds webhook integration.
  *
  * @package cf7_kraken
- * @since NEXT
+ * @since 1.1.0
  */
 
 defined( 'ABSPATH' ) || die();
@@ -11,14 +11,14 @@ defined( 'ABSPATH' ) || die();
 /**
  * CF7 Kraken Webhook Integration module class.
  *
- * @since NEXT
+ * @since 1.1.0
  */
 class CF7_Kraken_Webhook_Module {
 
 	/**
 	 * Module name.
 	 *
-	 * @since NEXT
+	 * @since 1.1.0
 	 *
 	 * @return string
 	 */
@@ -29,7 +29,7 @@ class CF7_Kraken_Webhook_Module {
 	/**
 	 * Module title.
 	 *
-	 * @since NEXT
+	 * @since 1.1.0
 	 * @access public
 	 *
 	 * @return string
@@ -41,7 +41,7 @@ class CF7_Kraken_Webhook_Module {
 	/**
 	 * Constructor.
 	 *
-	 * @since NEXT
+	 * @since 1.1.0
 	 * @access public
 	 */
 	public function __construct() {
@@ -51,7 +51,7 @@ class CF7_Kraken_Webhook_Module {
 	/**
 	 * Register metaboxes.
 	 *
-	 * @since NEXT
+	 * @since 1.1.0
 	 * @access public
 	 */
 	public function add_hooks() {
@@ -67,7 +67,7 @@ class CF7_Kraken_Webhook_Module {
 	/**
 	 * Register metaboxes.
 	 *
-	 * @since NEXT
+	 * @since 1.1.0
 	 * @access public
 	 */
 	public function register_meta_boxes() {
@@ -84,7 +84,7 @@ class CF7_Kraken_Webhook_Module {
 	/**
 	 * Metabox callback.
 	 *
-	 * @since NEXT
+	 * @since 1.1.0
 	 * @access public
 	 *
 	 * @return void
@@ -100,7 +100,7 @@ class CF7_Kraken_Webhook_Module {
 	/**
 	 * Contact Form 7 submit hook.
 	 *
-	 * @since NEXT
+	 * @since 1.1.0
 	 * @access public
 	 *
 	 * @param integer $post_id Post Id.
@@ -140,7 +140,7 @@ class CF7_Kraken_Webhook_Module {
 	/**
 	 * Map form fields to Mailchimp fields.
 	 *
-	 * @since NEXT
+	 * @since 1.1.0
 	 * @access protected
 	 * @static
 	 *
