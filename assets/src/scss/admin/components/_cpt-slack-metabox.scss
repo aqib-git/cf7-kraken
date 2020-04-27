@@ -1,6 +1,12 @@
 #cf7k_slack_integration_metabox {
 	display: none;
 
+
+	.hndle, .toggle-indicator {
+		background: black;
+    	color: white;
+	}
+
 	&.enabled {
 		display: block;
 	}

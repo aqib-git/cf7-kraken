@@ -177,6 +177,10 @@ if ( ! class_exists( 'CF7_kraken_Admin' ) ) {
 			if ( isset( $data['mailchimp'] ) ) {
 				update_post_meta( $post_id, 'mailchimp', $data['mailchimp'] );
 			}
+
+			if ( isset( $data['webhook'] ) ) {
+				update_post_meta( $post_id, 'webhook', $data['webhook'] );
+			}
 		}
 
 		/**
@@ -207,7 +211,7 @@ if ( ! class_exists( 'CF7_kraken_Admin' ) ) {
 		/**
 		 * Insert Form Column.
 		 *
-		 * @since NEXT
+		 * @since 1.1.0
 		 * @access public
 		 *
 		 * @param array $columns Table columns.
@@ -233,7 +237,7 @@ if ( ! class_exists( 'CF7_kraken_Admin' ) ) {
 		/**
 		 * Insert CF7 title in Form Column.
 		 *
-		 * @since NEXT
+		 * @since 1.1.0
 		 * @access public
 		 *
 		 * @param string $column
@@ -310,6 +314,7 @@ if ( ! class_exists( 'CF7_kraken_Admin' ) ) {
 						'get_audience_nonce' => wp_create_nonce( 'mailchimp_get_audience' ),
 						'get_audience_groups_nonce' => wp_create_nonce( 'mailchimp_get_audience_groups' ),
 						'get_audience_fields_nonce' => wp_create_nonce( 'mailchimp_get_audience_fields' ),
+						'email_field_mapping' => __( 'Field mapping for Email is required.', 'cf7-kraken' ),
 					],
 				]
 			);

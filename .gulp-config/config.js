@@ -1,7 +1,7 @@
 const config = {
   entries: {
     js: [
-      './assets/src/js/admin/admin.js'
+      './assets/src/js/admin/*.js'
     ],
     scss: [
       './assets/src/scss/admin/admin.scss'

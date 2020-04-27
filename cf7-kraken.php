@@ -1,20 +1,20 @@
 <?php
 /**
  * Plugin Name: CF7 Kraken
- * Plugin URI:  https://cf7k.asyncular.com
+ * Plugin URI:  https://cf7-kraken.codecrud.com
  * Description: Integrate your Contact Form 7 with Mailchimp, Slack and more are comming...
- * Version:     1.0.0
- * Author:      Asyncular
- * Author URI:  https://asyncular.com/
+ * Version:     1.1.0
+ * Author:      CodeCrud
+ * Author URI:  https://codecrud.com/
  * Text Domain: cf7-kraken
  * License:     GPL-2.0+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  * Domain Path: /includes/languages
  *
  * @package cf7_kraken
- * @author  Asyncular
+ * @author  CodeCrud
  * @license GPL-2.0+
- * @copyright  2020, Asyncular
+ * @copyright  2020, CodeCrud
  */
 
 // If this file is called directly, abort.
@@ -237,8 +237,6 @@ if ( ! class_exists( 'CF7_Kraken' ) ) {
 		public function init() {
 			$this->define_constants();
 			$this->add_hooks();
-
-			require_once $this->plugin_path . 'admin/admin.php';
 		}
 
 		/**
@@ -366,6 +364,10 @@ if ( ! class_exists( 'CF7_Kraken' ) ) {
 		 * @access private
 		 */
 		private function add_hooks() {
+			if ( is_admin() ) {
+				require_once $this->plugin_path . 'admin/admin.php';
+			}
+
 			add_action( 'init', [ $this, 'register_modules' ] );
 		}
 
@@ -421,11 +423,15 @@ if ( ! class_exists( 'CF7_Kraken' ) ) {
 			$posts = get_posts( [
 				'post_type'  => 'cf7k_integrations',
 				'numberpost' => -1,
-				'meta_key'   => 'cf7_id', // phpcs:ignore WordPress.DB.SlowDBQuery
-				'meta_value' => $response['_wpcf7'], // phpcs:ignore WordPress.DB.SlowDBQuery
 			] );
 
 			foreach ( $posts as $post ) {
+				$cf7_id = get_post_meta( $post->ID, 'cf7_id', true );
+
+				if ( $cf7_id !== $response['_wpcf7'] ) {
+					continue;
+				}
+
 				$integrations = get_post_meta( $post->ID, 'integrations', true );
 				$modules      = [];
 
@@ -438,9 +444,7 @@ if ( ! class_exists( 'CF7_Kraken' ) ) {
 				$data = cf7k_utils()::get_cf7_data( $response );
 
 				foreach ( $modules as $module ) {
-					if ( ! $module->handler( $post->ID, $data ) ) {
-						break;
-					}
+					$module->handler( $post->ID, $data );
 				}
 			}
 

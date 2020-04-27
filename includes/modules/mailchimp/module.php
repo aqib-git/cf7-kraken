@@ -119,15 +119,15 @@ class CF7_Kraken_Mailchimp_Module {
 		$settings = get_post_meta( $post_id, 'mailchimp', true );
 
 		if ( empty( $settings['api_key'] ) ) {
-			return;
+			return false;
 		}
 
 		if ( empty( $settings['audience'] ) ) {
-			return;
+			return false;
 		}
 
 		if ( empty( $settings['field_mapping'] ) ) {
-			return;
+			return false;
 		}
 
 		$email_field   = [];
@@ -142,7 +142,7 @@ class CF7_Kraken_Mailchimp_Module {
 		}
 
 		if ( empty( $email_field ) || empty( $form_fields[ $email_field['form_field'] ] ) ) {
-			return;
+			return false;
 		}
 
 		try {
@@ -167,7 +167,7 @@ class CF7_Kraken_Mailchimp_Module {
 			$handler->get( 'lists/' . $audience );
 
 			if ( ! $handler->success() ) {
-				return;
+				return false;
 			}
 
 			$post_data = [

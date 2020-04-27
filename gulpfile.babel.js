@@ -79,8 +79,8 @@ export const generatePot = () => {
       domain: 'cf7-kraken',
       destFile: 'cf7-kraken.pot',
       package: 'CF7Kraken',
-      lastTranslator: 'Asyncular Team <hello@asyncular.com>',
-      team: 'Asyncular <hello@asyncular.com>'
+      lastTranslator: 'CodeCrud Team <hello@codecrud.com>',
+      team: 'CodeCrud <hello@codecrud.com>'
     }))
     .pipe(gulp.dest('includes/languages/cf7-kraken.pot'));
 };

@@ -2,3 +2,29 @@
     from {transform:rotate(0deg);}
     to {transform:rotate(360deg);}
 }
+
+#{$class_prefix}-alert {
+	background: red;
+	color: white;
+	padding: 15px 10px;
+	margin: 10px 0;
+
+	p {
+		margin: 0;
+	}
+
+	ul {
+		padding: 0;
+		margin: 0;
+		list-style-type: circle;
+		list-style: inside;
+
+		li {
+			margin: 0;
+		}
+	}
+}
+
+#{$class_prefix}-red-text {
+	color: red;
+}
